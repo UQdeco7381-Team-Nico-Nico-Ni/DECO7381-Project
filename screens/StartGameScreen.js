@@ -1,19 +1,21 @@
 import React, { useState } from "react";
 import {
   View,
-  Text,
   StyleSheet,
   Button,
   TouchableWithoutFeedback,
   Keyboard,
   Alert,
-  Image
+  Image,
 } from "react-native";
 
 import Card from "../components/Card";
 import InputField from "../components/InputField";
 import Colors from "../constants/Colors";
 import NumberContainer from "../components/NumberContainer";
+import TitleText from "../components/TitleText";
+import BodyText from "../components/BodyText";
+import MainButton from "../components/MainButton";
 
 const StartGameScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
@@ -51,9 +53,11 @@ const StartGameScreen = (props) => {
   if (confirmed) {
     confirmedOutput = (
       <Card style={styles.summaryContainer}>
-        <Text>You selected</Text>
+        <BodyText>You selected</BodyText>
         <NumberContainer>{selectedNumber}</NumberContainer>
-        <Button title="START GAME" onPress={() => props.onStartGame(selectedNumber)}/>
+        <MainButton onPress={() => props.onStartGame(selectedNumber)}>
+          START GAME
+        </MainButton>
       </Card>
     );
   }
@@ -64,12 +68,12 @@ const StartGameScreen = (props) => {
       }}
     >
       <View style={styles.screen}>
-        <Text style={styles.title}>Start a New Game!</Text>
-        <View style={styles.imageContainer}>
+        <TitleText style={styles.title}>Start a New Game!</TitleText>
+        {/* <View style={styles.imageContainer}>
         <Image source={require('../assets/panda_icon.png')} style={styles.image} resizeMode="cover" />
-        </View>
+        </View> */}
         <Card style={styles.inputContainer}>
-          <Text>Select a Number</Text>
+          <BodyText>Select a Number</BodyText>
           <InputField
             style={styles.input}
             blurOnSubmit
@@ -111,7 +115,6 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   title: {
-    fontSize: 20,
     marginVertical: 10,
   },
   inputContainer: {
@@ -134,21 +137,21 @@ const styles = StyleSheet.create({
   },
   summaryContainer: {
     marginTop: 20,
-    alignItems: 'center',
+    alignItems: "center",
   },
   imageContainer: {
     width: 300,
     height: 300,
     borderRadius: 150,
     borderWidth: 3,
-    borderColor: 'black',
-    overflow: 'hidden',
+    borderColor: "black",
+    overflow: "hidden",
     marginVertical: 30,
   },
   image: {
-    width: '100%',
-    height: '100%',
-  }
+    width: "100%",
+    height: "100%",
+  },
 });
 
 export default StartGameScreen;

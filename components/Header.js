@@ -2,11 +2,12 @@ import React from "react";
 import { View, Text, StyleSheet,Image } from 'react-native';
 
 import Colors from "../constants/Colors";
+import TitleText from "./TitleText";
 
 const Header = props => {
     return (
         <View style={styles.header}>
-            <Text style={styles.headerTitle}>{props.title}</Text>
+            <TitleText>{props.title}</TitleText>
             {/* <Image source={require('../assets/banner.png')} style={styles.header} resizeMode="cover" /> */}
         </View>
     )
@@ -20,10 +21,6 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.primary,
         alignItems: 'center',
         justifyContent: 'center',
-    },
-    headerTitle: {
-        color: 'black',
-        fontSize: 18,
     },
 });
 
