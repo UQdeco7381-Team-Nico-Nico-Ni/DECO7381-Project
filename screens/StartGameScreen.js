@@ -13,54 +13,61 @@ import {
 } from "react-native";
 
 import Card from "../components/Card";
-import InputField from "../components/InputField";
 import Colors from "../constants/Colors";
-import NumberContainer from "../components/NumberContainer";
 import TitleText from "../components/TitleText";
 import BodyText from "../components/BodyText";
 import MainButton from "../components/MainButton";
-import { ScreenOrientation } from 'expo';
+import { ScreenOrientation } from "expo";
+
+const generateRandomBetween = (min, max, exclude) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  const rndNum = Math.floor(Math.random() * (max - min)) + min;
+  if (rndNum === exclude) {
+    return generateRandomBetween(min, max, exclude);
+  } else {
+    return rndNum;
+  }
+};
 
 const StartGameScreen = (props) => {
   const [enteredValue, setEnteredValue] = useState("");
   const [confirmed, setConfirmed] = useState(false);
-  const [selectedNumber, setSelectedNumber] = useState();
-  const [buttonWidth, setButtonWidth] = useState(Dimensions.get('window').width / 4);
-
-  const numberInputHandler = (inputText) => {
-    setEnteredValue(inputText.replace(/[^0-9]/g, ""));
-  };
-
-  const resetInputHandler = () => {
-    setEnteredValue("");
-    setConfirmed(false);
-  };
+  const [buttonWidth, setButtonWidth] = useState(
+    Dimensions.get("window").width / 4
+  );
+  const allGarbages = ["Bottles", "Papers", "Meat", "Vegetable"];
+  const recycleGarbages = ["Bottles", "Papers"];
+  const generalWaste = ["Meat", "Vegetable"];
+  const [selectGarbage, setSelectGarbage] = useState(
+    allGarbages[Math.floor(Math.random() * allGarbages.length)]
+  );
 
   useEffect(() => {
     const updateLayout = () => {
-        setButtonWidth(Dimensions.get('window').width / 4);
-      };
-      Dimensions.addEventListener('change', updateLayout);
-      return () => {
-        Dimensions.addEventListener('change', updateLayout).remove;
-      }
-  })
+      setButtonWidth(Dimensions.get("window").width / 4);
+    };
+    Dimensions.addEventListener("change", updateLayout);
+    return () => {
+      Dimensions.addEventListener("change", updateLayout).remove;
+    };
+  });
 
-  const confirmInputHandler = () => {
-    const chosenNumber = parseInt(enteredValue);
-
-    if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
-      Alert.alert(
-        "Invalid number!",
-        "Number has to be a number between 1 and 99.",
-        [{ text: "Okey", style: "destructive", onPress: resetInputHandler }]
-      );
-      return;
+  const generalWasteHandler = guess => {
+    if (generalWaste.includes(guess)) {
+        setConfirmed(true);
     }
-    setConfirmed(true);
-    setSelectedNumber(parseInt(enteredValue));
-    setEnteredValue("");
-    Keyboard.dismiss();
+  };
+
+  const recycleWasteHandler = guess => {
+    if (recycleGarbages.includes(guess)) {
+        setConfirmed(true);
+    }
+  };
+
+  const restartHandler = () => {
+    setSelectGarbage(allGarbages[Math.floor(Math.random() * allGarbages.length)]);
+    setConfirmed(false)
   };
 
   let confirmedOutput;
@@ -68,11 +75,8 @@ const StartGameScreen = (props) => {
   if (confirmed) {
     confirmedOutput = (
       <Card style={styles.summaryContainer}>
-        <BodyText>You selected</BodyText>
-        <NumberContainer>{selectedNumber}</NumberContainer>
-        <MainButton onPress={() => props.onStartGame(selectedNumber)}>
-          START GAME
-        </MainButton>
+        <BodyText>Correct!</BodyText>
+        <MainButton onPress={restartHandler}>NEW GAME</MainButton>
       </Card>
     );
   }
@@ -85,35 +89,25 @@ const StartGameScreen = (props) => {
           }}
         >
           <View style={styles.screen}>
-            <TitleText style={styles.title}>Start a New Game!</TitleText>
+            <TitleText style={styles.title}>Select the Correct Bin</TitleText>
             {/* <View style={styles.imageContainer}>
         <Image source={require('../assets/panda_icon.png')} style={styles.image} resizeMode="cover" />
         </View> */}
             <Card style={styles.inputContainer}>
-              <BodyText>Select a Number</BodyText>
-              <InputField
-                style={styles.input}
-                blurOnSubmit
-                autoCapitalize="none"
-                autoCorrect={false}
-                keyboardType="number-pad"
-                maxLength={2}
-                onChangeText={numberInputHandler}
-                value={enteredValue}
-              />
+              <TitleText>{selectGarbage}</TitleText>
               <View style={styles.buttonContainer}>
-                <View style={{width: buttonWidth}}>
+                <View style={{ width: buttonWidth }}>
                   <Button
-                    title="Reset"
-                    color={Colors.accent}
-                    onPress={resetInputHandler}
+                    title="General"
+                    color={Colors.general}
+                    onPress={() => generalWasteHandler(selectGarbage)}
                   />
                 </View>
-                <View style={{width: buttonWidth}}>
+                <View style={{ width: buttonWidth }}>
                   <Button
-                    title="Confirm"
-                    color={Colors.primary}
-                    onPress={confirmInputHandler}
+                    title="Recycle"
+                    color={Colors.recycle}
+                    onPress={() => recycleWasteHandler(selectGarbage)}
                   />
                 </View>
               </View>
@@ -149,9 +143,9 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     paddingHorizontal: 15,
   },
-//   button: {
-//     width: Dimensions.get("window").width / 4,
-//   },
+  //   button: {
+  //     width: Dimensions.get("window").width / 4,
+  //   },
   input: {
     width: 80,
     textAlign: "center",

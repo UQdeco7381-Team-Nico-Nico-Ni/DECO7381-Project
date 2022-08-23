@@ -52,14 +52,14 @@ const GameScreen = (props) => {
 
   useEffect(() => {
     const updateLayout = () => {
-        setAvailableDeviceWidth(Dimensions.get('window').width);
-        setAvailableDeviceHeight(Dimensions.get('window').height);
-    }
-    Dimensions.addEventListener('change', updateLayout);
+      setAvailableDeviceWidth(Dimensions.get("window").width);
+      setAvailableDeviceHeight(Dimensions.get("window").height);
+    };
+    Dimensions.addEventListener("change", updateLayout);
 
     return () => {
-        Dimensions.addEventListener('change', updateLayout).remove;
-    }
+      Dimensions.addEventListener("change", updateLayout).remove;
+    };
   });
 
   useEffect(() => {
@@ -95,8 +95,7 @@ const GameScreen = (props) => {
     ]);
   };
 
-  if (Dimensions.get('window').width < 350) {
-
+  if (Dimensions.get("window").width < 350) {
   }
   if (Dimensions.get("window").height < 500) {
     return (
