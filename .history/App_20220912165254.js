@@ -10,8 +10,7 @@ import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import MainMenuScreen from "./screens/MainMenuScreen";
-import SortingScreen from "./screens/SortingScreen";
-
+import GameScreen from "./screens/GameScreen";
 import { Colors } from "./constants/styles";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
 import IconButton from "./components/ui/IconButton";
@@ -38,9 +37,9 @@ function AuthenticatedStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: Colors.bashfulness },
+        headerStyle: { backgroundColor: Colors.primary500 },
         headerTintColor: "white",
-        contentStyle: { backgroundColor: Colors.springGreen },
+        contentStyle: { backgroundColor: Colors.primary100 },
       }}
     >
         <Stack.Screen
@@ -73,9 +72,16 @@ function AuthenticatedStack() {
       />
         <Stack.Screen
         name="GameScreen"
-        component={SortingScreen}
+        component={GameScreen}
         options={{
-            headerShown: false
+          headerRight: ({ tintColor }) => (
+            <IconButton
+              icon="exit"
+              color={tintColor}
+              size={24}
+              onPress={authCtx.logout}
+            />
+          ),
         }}
       />
     </Stack.Navigator>

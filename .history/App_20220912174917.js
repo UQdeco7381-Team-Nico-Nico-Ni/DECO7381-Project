@@ -5,11 +5,13 @@ import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import MainMenuScreen from "./screens/MainMenuScreen";
+import GameScreen from "./screens/GameScreen";
 import SortingScreen from "./screens/SortingScreen";
 
 import { Colors } from "./constants/styles";
@@ -38,9 +40,9 @@ function AuthenticatedStack() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: { backgroundColor: Colors.bashfulness },
+        headerStyle: { backgroundColor: Colors.primary500 },
         headerTintColor: "white",
-        contentStyle: { backgroundColor: Colors.springGreen },
+        contentStyle: { backgroundColor: Colors.primary100 },
       }}
     >
         <Stack.Screen
@@ -72,10 +74,17 @@ function AuthenticatedStack() {
         }}
       />
         <Stack.Screen
-        name="GameScreen"
+        name="SortingGame"
         component={SortingScreen}
         options={{
-            headerShown: false
+          headerRight: ({ tintColor }) => (
+            <IconButton
+              icon="exit"
+              color={tintColor}
+              size={24}
+              onPress={authCtx.logout}
+            />
+          ),
         }}
       />
     </Stack.Navigator>

@@ -10,6 +10,7 @@ import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import MainMenuScreen from "./screens/MainMenuScreen";
+import GameScreen from "./screens/GameScreen";
 import SortingScreen from "./screens/SortingScreen";
 
 import { Colors } from "./constants/styles";
