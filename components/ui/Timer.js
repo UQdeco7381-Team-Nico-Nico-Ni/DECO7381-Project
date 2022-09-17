@@ -40,7 +40,7 @@ function Timer() {
             justifyContent: 'center',
             alignItems: 'center',
             borderRadius: 35,
-            backgroundColor: '#2196f3',
+            backgroundColor: Colors.bearBrown,
           }}
           textStyle={{
             fontSize: 25,

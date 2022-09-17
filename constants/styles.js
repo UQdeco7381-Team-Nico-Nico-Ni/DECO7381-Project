@@ -17,8 +17,8 @@ export const Colors = {
 
   // Secondary brand colors
   babyBlue: '#c9dee3',
-  paleGreen: 'bdd4c4',
-  sand: 'fdcf9b',
-  rose: 'fdb39a',
-  blush: 'ea8684',
+  paleGreen: '#bdd4c4',
+  sand: '#fdcf9b',
+  rose: '#fdb39a',
+  blush: '#ea8684',
 }

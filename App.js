@@ -14,7 +14,7 @@ import SortingScreen from "./screens/SortingScreen";
 
 import { Colors } from "./constants/styles";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
-import IconButton from "./components/ui/IconButton";
+import IoniconsIconButton from "./components/ui/IoniconsIconButton";
 
 const Stack = createNativeStackNavigator();
 
@@ -48,7 +48,7 @@ function AuthenticatedStack() {
         component={MainMenuScreen}
         options={{
           headerRight: ({ tintColor }) => (
-            <IconButton
+            <IoniconsIconButton
               icon="exit"
               color={tintColor}
               size={24}
@@ -62,7 +62,7 @@ function AuthenticatedStack() {
         component={WelcomeScreen}
         options={{
           headerRight: ({ tintColor }) => (
-            <IconButton
+            <IoniconsIconButton
               icon="exit"
               color={tintColor}
               size={24}
