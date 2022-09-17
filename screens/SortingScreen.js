@@ -5,6 +5,7 @@ import { DraxProvider, DraxView } from "react-native-drax";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Colors } from "../constants/styles";
 import DragBox from "../components/ui/DragBox";
+import Timer from "../components/ui/Timer";
 import { GARBAGES } from "../data/dummy-data";
 
 const SortingScreen = (props) => {
@@ -39,8 +40,10 @@ const deleteItem = (id) => {
 
 
 return (
-
     <DraxProvider>
+        <View>
+        <Timer />
+        </View>
         <GestureHandlerRootView>
       <View style={styles.palette}>
         <View style={styles.garbagesList}>
