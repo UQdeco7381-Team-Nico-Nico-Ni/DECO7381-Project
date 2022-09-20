@@ -1,25 +1,36 @@
-import React from 'react'
-import { View, Text, StyleSheet, Button } from "react-native";
-import { useNavigation } from '@react-navigation/native';
-import { Colors } from '../constants/styles';
+import React from "react";
+import { View, StyleSheet, Button } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { Colors } from "../constants/styles";
 
 function MainMenuScreen() {
-    const navigation = useNavigation();
+  const navigation = useNavigation();
 
-    return (
-        <View style={styles.screen}>
-            <Text>Main Menu</Text>
-          <Button
-            title="New Game"
-            onPress={() => {
-                navigation.navigate('GameScreen');
-            }}
-          />
-        </View>
-      );
+  return (
+    <View style={styles.screen}>
+      <Button
+        title="New Game"
+        onPress={() => {
+          navigation.navigate("GameScreen");
+        }}
+      />
+      <Button
+        title="Profile"
+        onPress={() => {
+          navigation.navigate("Profile");
+        }}
+      />
+      <Button
+        title="Leader Board"
+        onPress={() => {
+          navigation.navigate("LeaderBoard");
+        }}
+      />
+    </View>
+  );
 }
 
-export default MainMenuScreen
+export default MainMenuScreen;
 
 const styles = StyleSheet.create({
   screen: {

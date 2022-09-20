@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import Button from '../ui/Button';
+import CustomButton from '../ui/CustomButton';
 import Input from './Input';
 
 function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
@@ -82,9 +82,9 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
           />
         )}
         <View style={styles.buttons}>
-          <Button onPress={submitHandler}>
+          <CustomButton onPress={submitHandler}>
             {isLogin ? 'Log In' : 'Sign Up'}
-          </Button>
+          </CustomButton>
         </View>
       </View>
     </View>

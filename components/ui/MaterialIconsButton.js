@@ -1,18 +1,18 @@
 import { Pressable, StyleSheet } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-function IconButton({ icon, color, size, onPress }) {
+function MaterialIconsButton({ icon, color, size, onPress }) {
   return (
     <Pressable
       style={({ pressed }) => [styles.button, pressed && styles.pressed]}
       onPress={onPress}
     >
-      <Ionicons name={icon} color={color} size={size} />
+      <MaterialCommunityIcons name={icon} color={color} size={size} />
     </Pressable>
   );
 }
 
-export default IconButton;
+export default MaterialIconsButton;
 
 const styles = StyleSheet.create({
   button: {

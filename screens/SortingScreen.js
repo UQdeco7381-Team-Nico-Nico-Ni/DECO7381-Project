@@ -1,13 +1,22 @@
 import * as React from "react";
 import { Text, View, StyleSheet, Button} from "react-native";
 
+import { useNavigation } from '@react-navigation/native';
 import { DraxProvider, DraxView } from "react-native-drax";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Colors } from "../constants/styles";
 import DragBox from "../components/ui/DragBox";
+import Timer from "../components/ui/Timer";
 import { GARBAGES } from "../data/dummy-data";
 
+// Buttons
+import CustomButton from "../components/ui/CustomButton";
+import EntypoIconButton from "../components/ui/EntypoIconButton";
+import MaterialIconsButton from "../components/ui/MaterialIconsButton";
+
 const SortingScreen = (props) => {
+    const navigation = useNavigation();
+
   const [received, setReceived] = React.useState([]);
   const [staged, setStaged] = React.useState([]);
   const [garbages, setGarbages] = React.useState(GARBAGES);
@@ -39,8 +48,13 @@ const deleteItem = (id) => {
 
 
 return (
-
     <DraxProvider>
+        <View style={styles.headerContainer}>
+        <EntypoIconButton style={styles.buttonContainer} icon="arrow-with-circle-left" size={36} color={Colors.rose} onPress={() => {
+                navigation.navigate('MainMenu')}} />
+        <Timer style={styles.buttonContainer}/>
+        <MaterialIconsButton style={styles.buttonContainer} icon="alert-box" size={36} color={Colors.rose}/>
+        </View>
         <GestureHandlerRootView>
       <View style={styles.palette}>
         <View style={styles.garbagesList}>
@@ -103,7 +117,6 @@ return (
             const combinedStyles = [
               styles.centeredContent,
               styles.draggableBox,
-              styles.cyan,
               offsetStyle,
             ];
             if (viewState.dragStatus === 1) {
@@ -140,16 +153,12 @@ const styles = StyleSheet.create({
   },
   receivingZone: {
     width: 120,
-    height: 150,
+    height: 180,
     borderRadius: 10,
   },
   receiving: {
     borderColor: "red",
     borderWidth: 2,
-  },
-  incomingPayload: {
-    marginTop: 10,
-    fontSize: 24,
   },
   received: {
     marginTop: 10,
@@ -159,7 +168,7 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     flexDirection: "row",
     justifyContent: "space-around",
-    height: "70%",
+    height: "50%",
   },
   draggableBox: {
     width: 60,
@@ -193,12 +202,22 @@ const styles = StyleSheet.create({
     paddingTop: 40,
   },
   garbagesList: {
+    margin: 10,
     flex: 1,
     flexWrap: 'wrap',
     justifyContent: "space-around",
     alignContent: 'space-around',
     flexDirection: 'row'
-  }
+  },
+  buttonContainer: {
+    flex: 1,
+  },
+  headerContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 
 export default SortingScreen;

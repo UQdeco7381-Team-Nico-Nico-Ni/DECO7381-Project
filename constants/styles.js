@@ -16,4 +16,9 @@ export const Colors = {
   bigStone: '303f47',
 
   // Secondary brand colors
+  babyBlue: '#c9dee3',
+  paleGreen: '#bdd4c4',
+  sand: '#fdcf9b',
+  rose: '#fdb39a',
+  blush: '#ea8684',
 }
