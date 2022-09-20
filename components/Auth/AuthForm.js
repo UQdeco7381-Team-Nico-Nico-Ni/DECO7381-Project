@@ -82,9 +82,9 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
           />
         )}
         <View style={styles.buttons}>
-          <Button onPress={submitHandler}>
+          <CustomButton onPress={submitHandler}>
             {isLogin ? 'Log In' : 'Sign Up'}
-          </Button>
+          </CustomButton>
         </View>
       </View>
     </View>
