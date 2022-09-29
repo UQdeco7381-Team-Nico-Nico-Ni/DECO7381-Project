@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import { DraxProvider, DraxView } from "react-native-drax";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
-
 import { Colors } from "../../constants/styles";
 
 const DragBox = (props) => {
@@ -17,10 +16,10 @@ const DragBox = (props) => {
       onDragDrop={props.onDragDrop}
     >
       <Text>{props.title}</Text>
-      {/* <Image
+      <Image
         source={{ uri: props.imageUrl }}
         style={{ width: 50, height: 50 }}
-      /> */}
+      />
     </DraxView>
   );
 };

@@ -8,6 +8,7 @@ import { Colors } from "../constants/styles";
 import DragBox from "../components/ui/DragBox";
 import Timer from "../components/ui/Timer";
 import { GARBAGES } from "../data/dummy-data";
+import dataFile from '../data/test.json';
 
 // Buttons
 import CustomButton from "../components/ui/CustomButton";
@@ -19,7 +20,7 @@ const SortingScreen = (props) => {
 
   const [received, setReceived] = React.useState([]);
   const [staged, setStaged] = React.useState([]);
-  const [garbages, setGarbages] = React.useState(GARBAGES);
+  const [garbages, setGarbages] = React.useState(dataFile);
 
 if (garbages.length == 0) {
     return (
