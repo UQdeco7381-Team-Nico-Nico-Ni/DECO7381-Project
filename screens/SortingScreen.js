@@ -1,68 +1,123 @@
-import * as React from "react";
-import { Text, View, StyleSheet, Button} from "react-native";
+import { useState, useEffect } from "react";
+import { Text, View, StyleSheet, Button } from "react-native";
 
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation } from "@react-navigation/native";
 import { DraxProvider, DraxView } from "react-native-drax";
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Colors } from "../constants/styles";
 import DragBox from "../components/ui/DragBox";
 import Timer from "../components/ui/Timer";
+import ScoreBox from "../components/ui/ScoreBox";
 import { GARBAGES } from "../data/dummy-data";
-import dataFile from '../data/test.json';
+import dataFile from "../data/test.json";
 
 // Buttons
 import CustomButton from "../components/ui/CustomButton";
 import EntypoIconButton from "../components/ui/EntypoIconButton";
 import MaterialIconsButton from "../components/ui/MaterialIconsButton";
 
-const SortingScreen = (props) => {
-    const navigation = useNavigation();
-
-  const [received, setReceived] = React.useState([]);
-  const [staged, setStaged] = React.useState([]);
-  const [garbages, setGarbages] = React.useState(dataFile);
-
-if (garbages.length == 0) {
-    return (
-        <View style={styles.gameOver}>
-            <Text>Congratulation! You Got 4 Point!</Text>
-          <Button
-            title="Back to Menu"
-            onPress={() => {
-            }}
-          />
-        </View>
-      );
-}
-
-const renderGridItem = (garbages) => {
-    return garbages.map((garbage) => {
-        return (
-          <DragBox key={garbage.id} id={garbage.id} title={garbage.title} imageUrl={garbage.imageUrl} onDragDrop={() => deleteItem(garbage.id)}/>
-        )
-    })
+const generateRandomBetween = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  const rndNum = Math.floor(Math.random() * (max - min)) + min;
+  // if (rndNum.index === exclude) { // in garbage.id, or map filter, map
+  //   return generateRandomBetween(min, max, exclude);
+  // } else {
+  return rndNum;
+  // }
 };
 
-const deleteItem = (id) => {
-    setGarbages(garbages.filter(item => item.id !== id));
+const SortingScreen = (props) => {
+  const navigation = useNavigation();
+
+  const [received, setReceived] = useState([]);
+  const [staged, setStaged] = useState([]);
+  const [garbages, setGarbages] = useState(dataFile);
+  const [selectedCards, setSelectedCards] = useState([]);
+  const [point, setPoint] = useState(0);
+
+  useEffect(() => {
+    if (selectedCards.length < 4) {
+      if (garbages.length != 0) {
+        const pickedNum = parseInt(generateRandomBetween(0, garbages.length));
+        const pickItem = garbages[pickedNum];
+        setSelectedCards((selectedCards) => [...selectedCards, pickItem]);
+        setGarbages(garbages.filter((item) => item !== pickItem));
+      }
+    }
+  }, [selectedCards.length]);
+
+  const renderGridItem = (selectedCards) => {
+    return selectedCards.map((garbage) => {
+      return (
+        <DragBox
+          key={garbage.id}
+          id={garbage.id}
+          title={garbage.title}
+          imageUrl={garbage.imageUrl}
+          category={garbage.category}
+          onDragDrop={() => deleteItem(garbage)}
+        />
+      );
+    });
+  };
+
+  const deleteItem = (garbage) => {
+    //condition
+    // if (garbage.category == )
+    setSelectedCards(selectedCards.filter((item) => item.id !== garbage.id));
+  };
+
+  if (
+    garbages &&
+    garbages.length == 0 &&
+    selectedCards &&
+    selectedCards.length == 0
+  ) {
+    return (
+      <View style={styles.gameOver}>
+        <Text>Congratulation! You Got {point} Point!</Text>
+        <Button
+          title="Back to Menu"
+          onPress={() => {
+            navigation.navigate("MainMenu");
+          }}
+        />
+      </View>
+    );
   }
 
-
-return (
+  return (
     <DraxProvider>
-        <View style={styles.headerContainer}>
-        <EntypoIconButton style={styles.buttonContainer} icon="arrow-with-circle-left" size={36} color={Colors.rose} onPress={() => {
-                navigation.navigate('MainMenu')}} />
-        <Timer style={styles.buttonContainer}/>
-        <MaterialIconsButton style={styles.buttonContainer} icon="alert-box" size={36} color={Colors.rose}/>
-        </View>
-        <GestureHandlerRootView>
-      <View style={styles.palette}>
-        <View style={styles.garbagesList}>
-        {renderGridItem(garbages)}
-        </View>
+      <View style={styles.headerContainer}>
+        <EntypoIconButton
+          style={styles.buttonContainer}
+          icon="arrow-with-circle-left"
+          size={36}
+          color={Colors.rose}
+          onPress={() => {
+            console.log(selectedCards);
+          }}
+        />
+        <MaterialIconsButton
+          style={styles.buttonContainer}
+          icon="alert-box"
+          size={36}
+          color={Colors.rose}
+          onPress={() => {
+            console.log(garbages);
+          }}
+        />
+        <Timer style={styles.buttonContainer} />
+        <ScoreBox points={point} style={styles.buttonContainer} />
 
       </View>
+      <GestureHandlerRootView>
+        <View style={styles.palette}>
+          <View style={styles.garbagesList}>
+            {renderGridItem(selectedCards)}
+          </View>
+        </View>
       </GestureHandlerRootView>
 
       <View style={styles.container}>
@@ -79,8 +134,14 @@ return (
               </>
             );
           }}
+
+          // Handle the result of drag.
           onReceiveDragDrop={(event) => {
-            setReceived([...received, event.dragged.payload || "?"]);
+            if (event.dragged.payload == "general") {
+                setPoint(point + 2);
+            } else {
+                console.log('incorrect!')
+            }
           }}
         />
 
@@ -130,9 +191,12 @@ return (
             );
           }}
           onReceiveDragDrop={(event) => {
-            setStaged([...staged, event.dragged.payload || "?"]);
+            if (event.dragged.payload == "recycle") {
+                setPoint(point + 2);
+            } else {
+                console.log('incorrect!')
+            }
           }}
-          onDragDrop={() => setStaged([])}
         />
       </View>
     </DraxProvider>
@@ -142,7 +206,7 @@ return (
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
     padding: 12,
     paddingTop: 40,
     flexDirection: "row",
@@ -205,19 +269,19 @@ const styles = StyleSheet.create({
   garbagesList: {
     margin: 10,
     flex: 1,
-    flexWrap: 'wrap',
+    flexWrap: "wrap",
     justifyContent: "space-around",
-    alignContent: 'space-around',
-    flexDirection: 'row'
+    alignContent: "space-around",
+    flexDirection: "row",
   },
   buttonContainer: {
     flex: 1,
   },
   headerContainer: {
     flex: 1,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 

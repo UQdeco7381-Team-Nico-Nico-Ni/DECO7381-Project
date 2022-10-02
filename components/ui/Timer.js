@@ -32,7 +32,7 @@ function Timer() {
       <View style={{ display: timerEnd ? 'none' : 'flex' }}>
         <CountDownTimer
           ref={refTimer}
-          timestamp={10}
+          timestamp={90}
           timerCallback={timerCallbackFunc}
           containerStyle={{
             height: 56,

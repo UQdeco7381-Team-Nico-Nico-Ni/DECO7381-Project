@@ -11,9 +11,11 @@ const DragBox = (props) => {
       draggingStyle={styles.dragging}
       dragReleasedStyle={styles.dragging}
       hoverDraggingStyle={styles.hoverDragging}
-      dragPayload={props.title}
+      dragPayload={props.category}
+      dragCategory={props.category}
       longPressDelay={0}
       onDragDrop={props.onDragDrop}
+      binType={props.binType}
     >
       <Text>{props.title}</Text>
       <Image
