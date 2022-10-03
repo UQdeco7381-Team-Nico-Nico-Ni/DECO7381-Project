@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import { DraxProvider, DraxView } from "react-native-drax";
-import { GestureHandlerRootView } from "react-native-gesture-handler";
-import { Colors } from "../../constants/styles";
+import GarbageImages from "../../data/GarbageImages";
 
 const DragBox = (props) => {
   return (
@@ -19,7 +18,8 @@ const DragBox = (props) => {
     >
       <Text>{props.title}</Text>
       <Image
-        source={{ uri: props.imageUrl }}
+      imageAssetsFolder
+        source={GarbageImages[props.imageUrl]}
         style={{ width: 50, height: 50 }}
       />
     </DraxView>

@@ -9,22 +9,20 @@ import DragBox from "../components/ui/DragBox";
 import Timer from "../components/ui/Timer";
 import ScoreBox from "../components/ui/ScoreBox";
 import { GARBAGES } from "../data/dummy-data";
-import dataFile from "../data/test.json";
+import dataFile from "../data/garbagesList";
+import { Category } from "../constants/GarbageInfo";
 
 // Buttons
 import CustomButton from "../components/ui/CustomButton";
 import EntypoIconButton from "../components/ui/EntypoIconButton";
 import MaterialIconsButton from "../components/ui/MaterialIconsButton";
 
+// Method of generate random numbers.
 const generateRandomBetween = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   const rndNum = Math.floor(Math.random() * (max - min)) + min;
-  // if (rndNum.index === exclude) { // in garbage.id, or map filter, map
-  //   return generateRandomBetween(min, max, exclude);
-  // } else {
   return rndNum;
-  // }
 };
 
 const SortingScreen = (props) => {
@@ -36,6 +34,7 @@ const SortingScreen = (props) => {
   const [selectedCards, setSelectedCards] = useState([]);
   const [point, setPoint] = useState(0);
 
+  // Track the game state, set the condition of generate the game cards
   useEffect(() => {
     if (selectedCards.length < 4) {
       if (garbages.length != 0) {
@@ -47,6 +46,7 @@ const SortingScreen = (props) => {
     }
   }, [selectedCards.length]);
 
+  // Generate the game cards UI components
   const renderGridItem = (selectedCards) => {
     return selectedCards.map((garbage) => {
       return (
@@ -62,12 +62,12 @@ const SortingScreen = (props) => {
     });
   };
 
+  // Delete card items
   const deleteItem = (garbage) => {
-    //condition
-    // if (garbage.category == )
     setSelectedCards(selectedCards.filter((item) => item.id !== garbage.id));
   };
 
+  // Ending contents
   if (
     garbages &&
     garbages.length == 0 &&
@@ -89,6 +89,7 @@ const SortingScreen = (props) => {
 
   return (
     <DraxProvider>
+      {/* Header Section */}
       <View style={styles.headerContainer}>
         <EntypoIconButton
           style={styles.buttonContainer}
@@ -96,7 +97,7 @@ const SortingScreen = (props) => {
           size={36}
           color={Colors.rose}
           onPress={() => {
-            console.log(selectedCards);
+            navigation.navigate("MainMenu");
           }}
         />
         <MaterialIconsButton
@@ -110,8 +111,9 @@ const SortingScreen = (props) => {
         />
         <Timer style={styles.buttonContainer} />
         <ScoreBox points={point} style={styles.buttonContainer} />
-
       </View>
+
+      {/* Cards Section */}
       <GestureHandlerRootView>
         <View style={styles.palette}>
           <View style={styles.garbagesList}>
@@ -120,8 +122,10 @@ const SortingScreen = (props) => {
         </View>
       </GestureHandlerRootView>
 
+      {/* Bins Section */}
       <View style={styles.container}>
         <DraxView
+        // General Bin
           style={[styles.centeredContent, styles.receivingZone, styles.general]}
           receivingStyle={styles.receiving}
           renderContent={({ viewState }) => {
@@ -134,18 +138,18 @@ const SortingScreen = (props) => {
               </>
             );
           }}
-
           // Handle the result of drag.
           onReceiveDragDrop={(event) => {
-            if (event.dragged.payload == "general") {
-                setPoint(point + 2);
+            if (event.dragged.payload == Category.general) {
+              setPoint(point + 2);
             } else {
-                console.log('incorrect!')
+              console.log("incorrect!");
             }
           }}
         />
 
         <DraxView
+        // Recycle Bin
           dragPayload={staged.join(" ")}
           draggable={staged.length > 0}
           renderContent={({ viewState }) => {
@@ -190,11 +194,12 @@ const SortingScreen = (props) => {
               </View>
             );
           }}
+          // Handle the result of drag.
           onReceiveDragDrop={(event) => {
-            if (event.dragged.payload == "recycle") {
-                setPoint(point + 2);
+            if (event.dragged.payload == Category.recycle) {
+              setPoint(point + 2);
             } else {
-                console.log('incorrect!')
+              console.log("incorrect!");
             }
           }}
         />
