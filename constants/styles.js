@@ -21,4 +21,5 @@ export const Colors = {
   sand: '#fdcf9b',
   rose: '#fdb39a',
   blush: '#ea8684',
+  paleSliver: '#F4FAE4',
 }
