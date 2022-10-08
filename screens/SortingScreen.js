@@ -139,8 +139,10 @@ const SortingScreen = (props) => {
             const receivingDrag = viewState && viewState.receivingDrag;
             const payload = receivingDrag && receivingDrag.payload;
             const bin_image = require("../assets/images/bins/General_Bin.png");
-
-            // Handle the dragging and receiving animation effects
+            const combinedStyles = [
+              styles.centeredContent,
+              styles.receivingZone,
+            ];
             return (
               <>
                 <View style={styles.binsContainer}>
@@ -174,8 +176,10 @@ const SortingScreen = (props) => {
             const payload = receivingDrag && receivingDrag.payload;
             const dragging = viewState && viewState.dragStatus !== 0;
             const bin_image = require("../assets/images/bins/Recycling_Bin.png");
-
-            // Handle the dragging and receiving animation effects
+            const combinedStyles = [
+              styles.centeredContent,
+              styles.receivingZone,
+            ];
             if (dragging) {
               combinedStyles.push({ opacity: 0.2 });
             } else if (receivingDrag) {
@@ -212,8 +216,12 @@ const SortingScreen = (props) => {
             const payload = receivingDrag && receivingDrag.payload;
             const dragging = viewState && viewState.dragStatus !== 0;
             const bin_image = require("../assets/images/bins/Green_Bin.png");
+            const combinedStyles = [
+                styles.centeredContent,
+                styles.receivingZone,
+              ];
 
-            // Handle the dragging and receiving animation effects
+            // Handle the dragging and receiving animation
             if (dragging) {
               combinedStyles.push({ opacity: 0.2 });
             } else if (receivingDrag) {
