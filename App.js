@@ -11,6 +11,8 @@ import SignupScreen from "./screens/SignupScreen";
 import WelcomeScreen from "./screens/WelcomeScreen";
 import MainMenuScreen from "./screens/MainMenuScreen";
 import SortingScreen from "./screens/SortingScreen";
+import LeaderBoard from "./screens/LeaderBoard";
+import Profile from "./screens/Profile";
 
 import { Colors } from "./constants/styles";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
@@ -43,7 +45,7 @@ function AuthenticatedStack() {
         contentStyle: { backgroundColor: Colors.springGreen },
       }}
     >
-        <Stack.Screen
+      <Stack.Screen
         name="MainMenu"
         component={MainMenuScreen}
         options={{
@@ -71,11 +73,25 @@ function AuthenticatedStack() {
           ),
         }}
       />
-        <Stack.Screen
+      <Stack.Screen
         name="GameScreen"
         component={SortingScreen}
         options={{
-            headerShown: false
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="LeaderBoard"
+        component={LeaderBoard}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
@@ -94,16 +110,16 @@ function Navigation() {
 }
 
 function Root() {
-//   const [fontsLoaded] = useFonts({
-//     "ubuntu": require("./assets/fonts/Ubuntu-Regular.ttf"),
-//     "ubuntu-bold": require("./assets/fonts/Ubuntu-Bold.ttf"),
-//     "notoSans": require("./assets/fonts/NotoSans-Regular.ttf"),
-//     "notoSans-bold": require("./assets/fonts/NotoSans-Bold.ttf"),
-//   });
+  //   const [fontsLoaded] = useFonts({
+  //     "ubuntu": require("./assets/fonts/Ubuntu-Regular.ttf"),
+  //     "ubuntu-bold": require("./assets/fonts/Ubuntu-Bold.ttf"),
+  //     "notoSans": require("./assets/fonts/NotoSans-Regular.ttf"),
+  //     "notoSans-bold": require("./assets/fonts/NotoSans-Bold.ttf"),
+  //   });
 
-//   if (!fontsLoaded) {
-//     return <AppLoading />;
-//   }
+  //   if (!fontsLoaded) {
+  //     return <AppLoading />;
+  //   }
 
   const [isTryingLogin, setIsTryingLogin] = useState(true);
 

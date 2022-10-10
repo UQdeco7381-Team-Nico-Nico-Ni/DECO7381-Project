@@ -15,7 +15,6 @@ import { Colors } from "../constants/styles";
 import DragBox from "../components/ui/DragBox";
 import Timer from "../components/ui/Timer";
 import ScoreBox from "../components/ui/ScoreBox";
-import { GARBAGES } from "../data/dummy-data";
 import dataFile from "../data/garbagesList";
 import { Category } from "../constants/GarbageInfo";
 
