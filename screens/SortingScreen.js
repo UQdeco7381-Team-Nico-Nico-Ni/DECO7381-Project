@@ -1,5 +1,12 @@
 import { useState, useEffect } from "react";
-import { Text, View, StyleSheet, Button } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Button,
+  Image,
+  ImageBackground,
+} from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { DraxProvider, DraxView } from "react-native-drax";
@@ -8,7 +15,6 @@ import { Colors } from "../constants/styles";
 import DragBox from "../components/ui/DragBox";
 import Timer from "../components/ui/Timer";
 import ScoreBox from "../components/ui/ScoreBox";
-import { GARBAGES } from "../data/dummy-data";
 import dataFile from "../data/garbagesList";
 import { Category } from "../constants/GarbageInfo";
 
@@ -125,16 +131,26 @@ const SortingScreen = (props) => {
       {/* Bins Section */}
       <View style={styles.container}>
         <DraxView
-        // General Bin
-          style={[styles.centeredContent, styles.receivingZone, styles.general]}
+          // General Bin
+          style={[styles.centeredContent, styles.receivingZone]}
           receivingStyle={styles.receiving}
           renderContent={({ viewState }) => {
             const receivingDrag = viewState && viewState.receivingDrag;
             const payload = receivingDrag && receivingDrag.payload;
+            const bin_image = require("../assets/images/bins/General_Bin.png");
+            const combinedStyles = [
+              styles.centeredContent,
+              styles.receivingZone,
+            ];
             return (
               <>
-                <Text>General Waste</Text>
-                <Text style={styles.received}>{received.join(" ")}</Text>
+                <View style={styles.binsContainer}>
+                  <ImageBackground
+                    source={bin_image}
+                    resizeMode="stretch"
+                    style={styles.binImage}
+                  ></ImageBackground>
+                </View>
               </>
             );
           }}
@@ -149,17 +165,19 @@ const SortingScreen = (props) => {
         />
 
         <DraxView
-        // Recycle Bin
+          // Recycle Bin
+          style={[styles.centeredContent, styles.receivingZone]}
+          receivingStyle={styles.receiving}
           dragPayload={staged.join(" ")}
           draggable={staged.length > 0}
           renderContent={({ viewState }) => {
             const receivingDrag = viewState && viewState.receivingDrag;
             const payload = receivingDrag && receivingDrag.payload;
             const dragging = viewState && viewState.dragStatus !== 0;
+            const bin_image = require("../assets/images/bins/Recycling_Bin.png");
             const combinedStyles = [
               styles.centeredContent,
               styles.receivingZone,
-              styles.recycle,
             ];
             if (dragging) {
               combinedStyles.push({ opacity: 0.2 });
@@ -167,36 +185,60 @@ const SortingScreen = (props) => {
               combinedStyles.push(styles.receiving);
             }
             return (
-              <View style={combinedStyles}>
-                <Text>Recycle Bin</Text>
-                <Text style={styles.received}>{staged.join(" ")}</Text>
-              </View>
-            );
-          }}
-          renderHoverContent={({ viewState }) => {
-            const offsetStyle = viewState.grabOffset
-              ? {
-                  marginLeft: viewState.grabOffset.x - 30,
-                  marginTop: viewState.grabOffset.y - 30,
-                }
-              : undefined;
-            const combinedStyles = [
-              styles.centeredContent,
-              styles.draggableBox,
-              offsetStyle,
-            ];
-            if (viewState.dragStatus === 1) {
-              combinedStyles.push(styles.hoverDragging);
-            }
-            return (
-              <View style={combinedStyles}>
-                <Text style={styles.stagedCount}>{staged.length}</Text>
+              <View style={styles.binsContainer}>
+                <ImageBackground
+                  source={bin_image}
+                  resizeMode="stretch"
+                  style={styles.binImage}
+                ></ImageBackground>
               </View>
             );
           }}
           // Handle the result of drag.
           onReceiveDragDrop={(event) => {
             if (event.dragged.payload == Category.recycle) {
+              setPoint(point + 2);
+            } else {
+              console.log("incorrect!");
+            }
+          }}
+        />
+
+        <DraxView
+          // Green Bin
+          style={[styles.centeredContent, styles.receivingZone]}
+          receivingStyle={styles.receiving}
+          dragPayload={staged.join(" ")}
+          draggable={staged.length > 0}
+          renderContent={({ viewState }) => {
+            const receivingDrag = viewState && viewState.receivingDrag;
+            const payload = receivingDrag && receivingDrag.payload;
+            const dragging = viewState && viewState.dragStatus !== 0;
+            const bin_image = require("../assets/images/bins/Green_Bin.png");
+            const combinedStyles = [
+                styles.centeredContent,
+                styles.receivingZone,
+              ];
+
+            // Handle the dragging and receiving animation
+            if (dragging) {
+              combinedStyles.push({ opacity: 0.2 });
+            } else if (receivingDrag) {
+              combinedStyles.push(styles.receiving);
+            }
+            return (
+              <View style={styles.binsContainer}>
+                <ImageBackground
+                  source={bin_image}
+                  resizeMode="stretch"
+                  style={styles.binImage}
+                ></ImageBackground>
+              </View>
+            );
+          }}
+          // Handle the result of drag.
+          onReceiveDragDrop={(event) => {
+            if (event.dragged.payload == Category.green) {
               setPoint(point + 2);
             } else {
               console.log("incorrect!");
@@ -217,6 +259,13 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
   },
+  binsContainer: {
+    flex: 1,
+    padding: 12,
+    paddingTop: 10,
+    flexDirection: "row",
+    justifyContent: "space-around",
+  },
   centeredContent: {
     justifyContent: "center",
     alignItems: "center",
@@ -226,13 +275,9 @@ const styles = StyleSheet.create({
     height: 180,
     borderRadius: 10,
   },
-  receiving: {
+  receiving: { // the receiving animation effects
     borderColor: "red",
     borderWidth: 2,
-  },
-  received: {
-    marginTop: 10,
-    fontSize: 18,
   },
   palette: {
     paddingTop: 30,
@@ -247,24 +292,14 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
   },
-  magenta: {
-    backgroundColor: "#ffaaff",
-  },
-  general: {
-    backgroundColor: Colors.bashfulness,
-  },
-  recycle: {
-    backgroundColor: Colors.bamboo,
+  binImage: {
+    height: 170,
+    width: 100,
+    flex: 1,
+    justifyContent: "center",
   },
   dragging: {
     opacity: 0.2,
-  },
-  hoverDragging: {
-    borderColor: "magenta",
-    borderWidth: 2,
-  },
-  stagedCount: {
-    fontSize: 18,
   },
   gameOver: {
     flex: 1,
