@@ -51,7 +51,6 @@ export default MainMenuScreen;
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: Colors.babyCream,
     alignItems: "center",
     justifyContent: "center",
   },
