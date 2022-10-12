@@ -4,7 +4,6 @@ import {
   View,
   StyleSheet,
   Button,
-  Image,
   ImageBackground,
 } from "react-native";
 
@@ -157,7 +156,7 @@ const SortingScreen = (props) => {
           // Handle the result of drag.
           onReceiveDragDrop={(event) => {
             if (event.dragged.payload == Category.general) {
-              setPoint(point + 2);
+              setPoint(point + 200);
             } else {
               console.log("incorrect!");
             }
@@ -197,7 +196,7 @@ const SortingScreen = (props) => {
           // Handle the result of drag.
           onReceiveDragDrop={(event) => {
             if (event.dragged.payload == Category.recycle) {
-              setPoint(point + 2);
+              setPoint(point + 200);
             } else {
               console.log("incorrect!");
             }
@@ -239,7 +238,7 @@ const SortingScreen = (props) => {
           // Handle the result of drag.
           onReceiveDragDrop={(event) => {
             if (event.dragged.payload == Category.green) {
-              setPoint(point + 2);
+              setPoint(point + 200);
             } else {
               console.log("incorrect!");
             }
