@@ -3,7 +3,6 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 
 import LoginScreen from "./screens/LoginScreen";
@@ -110,27 +109,21 @@ function Navigation() {
 }
 
 function Root() {
-  //   const [fontsLoaded] = useFonts({
-  //     "ubuntu": require("./assets/fonts/Ubuntu-Regular.ttf"),
-  //     "ubuntu-bold": require("./assets/fonts/Ubuntu-Bold.ttf"),
-  //     "notoSans": require("./assets/fonts/NotoSans-Regular.ttf"),
-  //     "notoSans-bold": require("./assets/fonts/NotoSans-Bold.ttf"),
-  //   });
-
-  //   if (!fontsLoaded) {
-  //     return <AppLoading />;
-  //   }
 
   const [isTryingLogin, setIsTryingLogin] = useState(true);
+  const [userName, setUserName] = useState();
 
   const authCtx = useContext(AuthContext);
 
   useEffect(() => {
     async function fetchToken() {
       const storedToken = await AsyncStorage.getItem("token");
+      const userName = await AsyncStorage.getItem("userName");
 
       if (storedToken) {
         authCtx.authenticate(storedToken);
+        authCtx.getUser(userName)
+        setUserName(userName)
       }
 
       setIsTryingLogin(false);
