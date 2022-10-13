@@ -26,7 +26,7 @@ function AuthStack() {
         headerShown: false,
         headerStyle: { backgroundColor: Colors.primary500 },
         headerTintColor: "white",
-        contentStyle: { backgroundColor: 'white' },
+        contentStyle: { backgroundColor: "white" },
       }}
     >
       <Stack.Screen name="Login" component={LoginScreen} />
@@ -46,10 +46,11 @@ function AuthenticatedStack() {
         contentStyle: { backgroundColor: Colors.springGreen },
       }}
     >
-        <Stack.Screen
-        name="Welcome To Litter Panda!"
+      <Stack.Screen
+        name="MainMenu"
         component={MainMenuScreen}
         options={{
+          title: "Welcome To Litter Panda!",
           headerShown: true,
           headerRight: ({ tintColor }) => (
             <IoniconsIconButton
@@ -112,7 +113,6 @@ function Navigation() {
 }
 
 function Root() {
-
   const [isTryingLogin, setIsTryingLogin] = useState(true);
   const [userName, setUserName] = useState();
 
@@ -125,8 +125,8 @@ function Root() {
 
       if (storedToken) {
         authCtx.authenticate(storedToken);
-        authCtx.getUser(userName)
-        setUserName(userName)
+        authCtx.getUser(userName);
+        setUserName(userName);
       }
 
       setIsTryingLogin(false);

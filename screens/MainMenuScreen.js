@@ -7,7 +7,7 @@ function MainMenuScreen() {
   const navigation = useNavigation();
 
   return (
-    
+
     <View style={styles.screen}>
       {/* load background image */}
       {/* <ImageBackground source={require("../assets/images/backgroundImage/mainMenu.png")} style={styles.backgroundImage}></ImageBackground> */}
