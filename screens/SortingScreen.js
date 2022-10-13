@@ -22,6 +22,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../store/auth-context";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
 import ErrorOverlay from "../components/ui/ErrorOverlay";
+import AppLoading from "expo-app-loading";
 
 // Buttons
 import CustomButton from "../components/ui/CustomButton";
@@ -47,6 +48,7 @@ const SortingScreen = (props) => {
   const [userName, setUserName] = useState();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState();
+  const [isTryingLogin, setIsTryingLogin] = useState(true);
 
   const authCtx = useContext(AuthContext);
 
@@ -83,6 +85,10 @@ const SortingScreen = (props) => {
 
     fetchUser();
   }, []);
+
+  if (isTryingLogin) {
+    return <AppLoading />;
+  }
 
   async function handleSubmit() {
     setIsSubmitting(true);
