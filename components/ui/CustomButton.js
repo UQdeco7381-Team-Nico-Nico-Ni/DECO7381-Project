@@ -19,14 +19,17 @@ export default CustomButton;
 
 const styles = StyleSheet.create({
   button: {
-    borderRadius: 6,
-    paddingVertical: 6,
+    height: 35,
+    width: 285,
+    borderRadius: 10,
+    paddingVertical: 8,
     paddingHorizontal: 12,
-    backgroundColor: Colors.primary500,
-    elevation: 2,
+    marginTop: 5,
+    backgroundColor: Colors.springGreen,
+    elevation: 3,
     shadowColor: 'black',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.25,
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.15,
     shadowRadius: 4,
   },
   pressed: {

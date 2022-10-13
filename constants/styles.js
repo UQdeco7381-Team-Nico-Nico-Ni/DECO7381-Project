@@ -10,10 +10,12 @@ export const Colors = {
   lightTouch: '#f4ebde',
   bashfulness: '#ff887a',
   bamboo: '#66a162',
+  pineTree: '#76C271',
   babyBrownOwl: '#c3c1b6',
   bearBrown: '#6f5f52',
   elephantEar: '#999084',
-  bigStone: '303f47',
+  bigStone: '#303f47',
+  babyCream: '#F3EADD',
 
   // Secondary brand colors
   babyBlue: '#c9dee3',
@@ -22,4 +24,5 @@ export const Colors = {
   rose: '#fdb39a',
   blush: '#ea8684',
   paleSliver: '#F4FAE4',
+  darkPine: '#758370',
 }

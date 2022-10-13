@@ -1,10 +1,10 @@
-import { useState } from 'react';
-import { Alert, StyleSheet, View } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useState } from "react";
+import { Alert, StyleSheet, View, ImageBackground } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
-import FlatButton from '../ui/FlatButton';
-import AuthForm from './AuthForm';
-import { Colors } from '../../constants/styles';
+import FlatButton from "../ui/FlatButton";
+import AuthForm from "./AuthForm";
+import { Colors } from "../../constants/styles";
 
 function AuthContent({ isLogin, onAuthenticate }) {
   const navigation = useNavigation();
@@ -18,9 +18,9 @@ function AuthContent({ isLogin, onAuthenticate }) {
 
   function switchAuthModeHandler() {
     if (isLogin) {
-      navigation.navigate('Signup');
+      navigation.navigate("Signup");
     } else {
-      navigation.navigate('Login');
+      navigation.navigate("Login");
     }
   }
 
@@ -30,7 +30,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
     email = email.trim();
     password = password.trim();
 
-    const emailIsValid = email.includes('@');
+    const emailIsValid = email.includes("@");
     const passwordIsValid = password.length > 6;
     const emailsAreEqual = email === confirmEmail;
     const passwordsAreEqual = password === confirmPassword;
@@ -40,7 +40,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
       !passwordIsValid ||
       (!isLogin && (!emailsAreEqual || !passwordsAreEqual))
     ) {
-      Alert.alert('Invalid input', 'Please check your entered credentials.');
+      Alert.alert("Invalid input", "Please check your entered credentials.");
       setCredentialsInvalid({
         email: !emailIsValid,
         confirmEmail: !emailIsValid || !emailsAreEqual,
@@ -61,7 +61,7 @@ function AuthContent({ isLogin, onAuthenticate }) {
       />
       <View style={styles.buttons}>
         <FlatButton onPress={switchAuthModeHandler}>
-          {isLogin ? 'Create a new user' : 'Log in instead'}
+          {isLogin ? "Create a new user" : "Log in instead"}
         </FlatButton>
       </View>
     </View>
@@ -72,18 +72,18 @@ export default AuthContent;
 
 const styles = StyleSheet.create({
   authContent: {
-    marginTop: 64,
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
     marginHorizontal: 32,
     padding: 16,
     borderRadius: 8,
-    backgroundColor: Colors.primary800,
-    elevation: 2,
-    shadowColor: 'black',
-    shadowOffset: { width: 1, height: 1 },
-    shadowOpacity: 0.35,
-    shadowRadius: 4,
   },
   buttons: {
     marginTop: 8,
+  },
+  image: {
+    flex: 1,
+    justifyContent: "center"
   },
 });
