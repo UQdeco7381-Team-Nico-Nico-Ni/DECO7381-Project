@@ -66,14 +66,7 @@ function AuthenticatedStack() {
         name="Welcome"
         component={WelcomeScreen}
         options={{
-          headerRight: ({ tintColor }) => (
-            <IoniconsIconButton
-              icon="exit"
-              color={tintColor}
-              size={24}
-              onPress={authCtx.logout}
-            />
-          ),
+          headerShown: false
         }}
       />
       <Stack.Screen
