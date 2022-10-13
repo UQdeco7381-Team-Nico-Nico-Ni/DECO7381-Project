@@ -297,7 +297,7 @@ const SortingScreen = (props) => {
               <View style={styles.binsContainer}>
                 <ImageBackground
                   source={bin_image}
-                  resizeMode="stretch"
+                  resizeMode='stretch'
                   style={styles.binImage}
                 ></ImageBackground>
               </View>
@@ -320,9 +320,8 @@ const SortingScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexWrap: "wrap",
     padding: 12,
-    paddingTop: 40,
+    paddingTop: 30,
     flexDirection: "row",
     justifyContent: "space-around",
   },
@@ -331,7 +330,6 @@ const styles = StyleSheet.create({
     padding: 12,
     paddingTop: 10,
     flexDirection: "row",
-    justifyContent: "space-around",
   },
   centeredContent: {
     justifyContent: "center",
@@ -362,9 +360,7 @@ const styles = StyleSheet.create({
   },
   binImage: {
     height: 170,
-    width: 100,
     flex: 1,
-    justifyContent: "center",
   },
   dragging: {
     opacity: 0.2,
