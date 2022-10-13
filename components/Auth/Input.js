@@ -35,20 +35,21 @@ const styles = StyleSheet.create({
     marginVertical: 8,
   },
   label: {
-    color: 'white',
+    color: Colors.darkPine,
     marginBottom: 4,
   },
   labelInvalid: {
     color: Colors.error500,
   },
   input: {
-    paddingVertical: 8,
-    paddingHorizontal: 6,
-    backgroundColor: Colors.primary100,
-    borderRadius: 4,
+    paddingHorizontal: 21,
+    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    width: 287,
+    height:50,
+    borderRadius: 20,
     fontSize: 16,
   },
   inputInvalid: {
-    backgroundColor: Colors.error100,
+    backgroundColor: Colors.rose,
   },
 });

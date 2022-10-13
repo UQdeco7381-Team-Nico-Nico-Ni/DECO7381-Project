@@ -21,12 +21,13 @@ const styles = StyleSheet.create({
   button: {
     paddingVertical: 6,
     paddingHorizontal: 12,
+    marginTop: 3,
   },
   pressed: {
     opacity: 0.7,
   },
   buttonText: {
     textAlign: 'center',
-    color: Colors.primary100,
+    color: '#000',
   },
 });

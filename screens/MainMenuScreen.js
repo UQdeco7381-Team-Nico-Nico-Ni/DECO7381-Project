@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StyleSheet, Button, Pressable, Text, Image } from "react-native";
+import { View, StyleSheet, Button, Pressable, Text, Image, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Colors } from "../constants/styles";
 
@@ -7,7 +7,11 @@ function MainMenuScreen() {
   const navigation = useNavigation();
 
   return (
+    
     <View style={styles.screen}>
+      {/* load background image */}
+      {/* <ImageBackground source={require("../assets/images/backgroundImage/mainMenu.png")} style={styles.backgroundImage}></ImageBackground> */}
+
       {/* load game image */}
       <Image
         source={require("../assets/images/appLogo/applogo.png")}
@@ -51,6 +55,7 @@ export default MainMenuScreen;
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
+    backgroundColor: Colors.babyCream,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -86,7 +91,7 @@ const styles = StyleSheet.create({
     borderRadius: 33,
     justifyContent: "center",
     marginBottom: 20,
-    shadowColor: "#000000",
+    shadowColor: "black",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -97,7 +102,7 @@ const styles = StyleSheet.create({
   },
   buttonFont: {
     // fontFamily: WendyOne,
-    color: Colors.lightTouch,
+    color: 'white',
     fontSize: 24,
     textAlign: "center",
     textAlignVertical: "center",
@@ -106,5 +111,10 @@ const styles = StyleSheet.create({
   image: {
     width: 200,
     height: 200,
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover',
+    justifyContent: 'center',
   },
 });

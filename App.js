@@ -24,9 +24,10 @@ function AuthStack() {
   return (
     <Stack.Navigator
       screenOptions={{
+        headerShown: false,
         headerStyle: { backgroundColor: Colors.primary500 },
         headerTintColor: "white",
-        contentStyle: { backgroundColor: Colors.springGreen },
+        contentStyle: { backgroundColor: 'white' },
       }}
     >
       <Stack.Screen name="Login" component={LoginScreen} />
@@ -40,15 +41,17 @@ function AuthenticatedStack() {
   return (
     <Stack.Navigator
       screenOptions={{
+        // headerShown: false,
         headerStyle: { backgroundColor: Colors.bashfulness },
         headerTintColor: "white",
         contentStyle: { backgroundColor: Colors.springGreen },
       }}
     >
-      <Stack.Screen
-        name="MainMenu"
+        <Stack.Screen
+        name="Welcome To Litter Panda!"
         component={MainMenuScreen}
         options={{
+          headerShown: true,
           headerRight: ({ tintColor }) => (
             <IoniconsIconButton
               icon="exit"
