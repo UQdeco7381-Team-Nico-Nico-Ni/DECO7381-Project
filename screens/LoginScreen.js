@@ -18,6 +18,7 @@ function LoginScreen() {
       const token = await login(email, password);
       authCtx.authenticate(token);
       AsyncStorage.setItem('userName', email);
+      authCtx.getUser(email);
     } catch (error) {
       Alert.alert(
         'Authentication failed!',

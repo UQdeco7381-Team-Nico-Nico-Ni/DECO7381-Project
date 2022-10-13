@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import {
   Text,
   View,
   StyleSheet,
   Button,
   ImageBackground,
+  Alert,
 } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
@@ -16,6 +17,11 @@ import Timer from "../components/ui/Timer";
 import ScoreBox from "../components/ui/ScoreBox";
 import dataFile from "../data/garbagesList";
 import { Category } from "../constants/GarbageInfo";
+import { storeRecord } from "../util/htttp";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { AuthContext } from "../store/auth-context";
+import LoadingOverlay from "../components/ui/LoadingOverlay";
+import ErrorOverlay from "../components/ui/ErrorOverlay";
 
 // Buttons
 import CustomButton from "../components/ui/CustomButton";
@@ -38,6 +44,16 @@ const SortingScreen = (props) => {
   const [garbages, setGarbages] = useState(dataFile);
   const [selectedCards, setSelectedCards] = useState([]);
   const [point, setPoint] = useState(0);
+  const [userName, setUserName] = useState();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [error, setError] = useState();
+
+  const authCtx = useContext(AuthContext);
+
+  // test function to clear the all cards.
+  const clear = () => {
+    setSelectedCards([]);
+  }
 
   // Track the game state, set the condition of generate the game cards
   useEffect(() => {
@@ -50,6 +66,41 @@ const SortingScreen = (props) => {
       }
     }
   }, [selectedCards.length]);
+
+  // Get the current user
+  useEffect(() => {
+    async function fetchUser() {
+      const storedToken = await AsyncStorage.getItem("token");
+      const userName = await AsyncStorage.getItem("userName");
+
+      if (storedToken) {
+        authCtx.authenticate(storedToken);
+        setUserName(userName);
+      }
+
+        setIsTryingLogin(false);
+    }
+
+    fetchUser();
+  }, []);
+
+  async function handleSubmit() {
+    setIsSubmitting(true);
+    const record = {
+      player: userName,
+      point: point,
+    };
+    try {
+      await storeRecord(record);
+      setIsSubmitting(false);
+      Alert.alert('Saved!');
+    } catch (error) {
+      setError('Fail to record!')
+      setIsSubmitting(false);
+      Alert.alert('Fail to record!');
+    }
+    navigation.goBack();
+  }
 
   // Generate the game cards UI components
   const renderGridItem = (selectedCards) => {
@@ -66,6 +117,10 @@ const SortingScreen = (props) => {
       );
     });
   };
+
+  if (isSubmitting) {
+    return <LoadingOverlay />;
+  }
 
   // Delete card items
   const deleteItem = (garbage) => {
@@ -88,8 +143,15 @@ const SortingScreen = (props) => {
             navigation.navigate("MainMenu");
           }}
         />
+        <Button title="Save Record" onPress={() => handleSubmit()} />
       </View>
     );
+  }
+
+  // Handle the ok button
+  function errorHandler() {
+    setError(null);
+    navigation.goBack();
   }
 
   return (
@@ -111,7 +173,7 @@ const SortingScreen = (props) => {
           size={36}
           color={Colors.rose}
           onPress={() => {
-            console.log(garbages);
+            clear()
           }}
         />
         <Timer style={styles.buttonContainer} />
@@ -215,9 +277,9 @@ const SortingScreen = (props) => {
             const dragging = viewState && viewState.dragStatus !== 0;
             const bin_image = require("../assets/images/bins/Green_Bin.png");
             const combinedStyles = [
-                styles.centeredContent,
-                styles.receivingZone,
-              ];
+              styles.centeredContent,
+              styles.receivingZone,
+            ];
 
             // Handle the dragging and receiving animation
             if (dragging) {
@@ -274,7 +336,8 @@ const styles = StyleSheet.create({
     height: 180,
     borderRadius: 10,
   },
-  receiving: { // the receiving animation effects
+  receiving: {
+    // the receiving animation effects
     borderColor: "red",
     borderWidth: 2,
   },
