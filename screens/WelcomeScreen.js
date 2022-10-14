@@ -23,6 +23,7 @@ import LoadingOverlay from "../components/ui/LoadingOverlay";
 import ErrorOverlay from "../components/ui/ErrorOverlay";
 import AppLoading from "expo-app-loading";
 import HintBox from "../components/ui/HintBox";
+import FadeInView from "../components/ui/FadeInView";
 
 // Buttons
 import CustomButton from "../components/ui/CustomButton";
@@ -49,6 +50,7 @@ const Welcome = (props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState();
   const [isTryingLogin, setIsTryingLogin] = useState(true);
+  const [isWrong, setIsWrong] = useState(false);
   const [isGetHint, setIsGetHint] = useState(false);
   const [hint, setHint] = useState();
 
@@ -58,6 +60,11 @@ const Welcome = (props) => {
   const clear = () => {
     setSelectedCards([]);
     setIsGetHint(false);
+  };
+
+  // trigger when made the mistake
+  const hintTriggered = () => {
+    setIsWrong(false);
   };
 
   // Track the game state, set the condition of generate the game cards
@@ -124,6 +131,7 @@ const Welcome = (props) => {
           imageUrl={garbage.imageUrl}
           category={garbage.category}
           onDragDrop={() => deleteItem(garbage)}
+          onDragStart={() => hintTriggered()}
         />
       );
     });
@@ -194,7 +202,7 @@ const Welcome = (props) => {
             }}
           />
           <View style={styles.buttonContainer} />
-          <Button title='skip' onPress={clear}/>
+          <Button title="skip" onPress={clear} />
         </View>
 
         {/* Cards Section */}
@@ -208,6 +216,9 @@ const Welcome = (props) => {
 
         <View style={styles.hintBox}>
           {isGetHint && <HintBox hint={hint}></HintBox>}
+        </View>
+        <View style={styles.wrongAnswer}>
+          {isWrong && <FadeInView text="mistake" />}
         </View>
 
         {/* Bins Section */}
@@ -241,7 +252,7 @@ const Welcome = (props) => {
               if (event.dragged.payload == Category.general) {
                 setPoint(point + 200);
               } else {
-                console.log("incorrect!");
+                setIsWrong(true);
               }
             }}
           />
@@ -281,7 +292,7 @@ const Welcome = (props) => {
               if (event.dragged.payload == Category.recycle) {
                 setPoint(point + 200);
               } else {
-                console.log("incorrect!");
+                setIsWrong(true);
               }
             }}
           />
@@ -323,7 +334,7 @@ const Welcome = (props) => {
               if (event.dragged.payload == Category.green) {
                 setPoint(point + 200);
               } else {
-                console.log("incorrect!");
+                setIsWrong(true);
               }
             }}
           />
@@ -398,6 +409,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
+  },
+  wrongAnswer: {
+    alignItems: "center",
   },
 });
 

@@ -14,6 +14,7 @@ const DragBox = (props) => {
       dragCategory={props.category}
       longPressDelay={0}
       onDragDrop={props.onDragDrop}
+      onDragStart={props.onDragStart}
       binType={props.binType}
     >
       <Text>{props.title}</Text>

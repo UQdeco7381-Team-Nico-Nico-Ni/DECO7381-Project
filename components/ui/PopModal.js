@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Modal, Pressable, Alert } from "react-native";
+import { View, Text, StyleSheet, Modal, Pressable } from "react-native";
 import { Colors } from "../../constants/styles";
 
 const PopModal = ({ modalVisible, text, leftButton, rightButton }) => {

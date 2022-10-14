@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import {
   Text,
   View,
@@ -6,6 +6,8 @@ import {
   Button,
   ImageBackground,
   Alert,
+  Animated,
+  LogBox,
 } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
@@ -25,6 +27,7 @@ import ErrorOverlay from "../components/ui/ErrorOverlay";
 import PopModal from "../components/ui/PopModal";
 import ResultModal from "../components/ui/ResultModal";
 import AppLoading from "expo-app-loading";
+import FadeInView from "../components/ui/FadeInView";
 
 // Buttons
 import CustomButton from "../components/ui/CustomButton";
@@ -40,6 +43,8 @@ const generateRandomBetween = (min, max) => {
 };
 
 const SortingScreen = (props) => {
+  const fadeAnim = useRef(new Animated.Value(1)).current;
+
   const navigation = useNavigation();
 
   const [received, setReceived] = useState([]);
@@ -49,6 +54,7 @@ const SortingScreen = (props) => {
   const [point, setPoint] = useState(0);
   const [userName, setUserName] = useState();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isWrong, setIsWrong] = useState(false);
   const [error, setError] = useState();
   const [isTryingLogin, setIsTryingLogin] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
@@ -69,9 +75,9 @@ const SortingScreen = (props) => {
     setIsGameEnd(true);
   };
 
-  // clear all cards of the current state.
-  const clear = () => {
-    setSelectedCards([]);
+  // trigger when made the mistake
+  const hintTriggered = () => {
+    setIsWrong(false);
   };
 
   // Track the game state, set the condition of generate the game cards
@@ -145,6 +151,7 @@ const SortingScreen = (props) => {
           imageUrl={garbage.imageUrl}
           category={garbage.category}
           onDragDrop={() => deleteItem(garbage)}
+          onDragStart={() => hintTriggered()}
         />
       );
     });
@@ -178,15 +185,7 @@ const SortingScreen = (props) => {
             setModalVisible(true);
           }}
         />
-        <MaterialIconsButton
-          style={styles.buttonContainer}
-          icon="alert-box"
-          size={36}
-          color={Colors.rose}
-          onPress={() => {
-            clear();
-          }}
-        />
+        <View style={styles.headerSpace}></View>
         <Timer
           style={styles.buttonContainer}
           timeUpMethod={() => {
@@ -226,6 +225,8 @@ const SortingScreen = (props) => {
         </View>
       </GestureHandlerRootView>
 
+      <View style={styles}>{isWrong && <FadeInView text="mistake" />}</View>
+
       {/* Bins Section */}
       <View style={styles.container}>
         <DraxView
@@ -257,7 +258,7 @@ const SortingScreen = (props) => {
             if (event.dragged.payload == Category.general) {
               setPoint(point + 200);
             } else {
-              console.log("incorrect!");
+              setIsWrong(true);
             }
           }}
         />
@@ -297,7 +298,7 @@ const SortingScreen = (props) => {
             if (event.dragged.payload == Category.recycle) {
               setPoint(point + 200);
             } else {
-              console.log("incorrect!");
+              setIsWrong(true);
             }
           }}
         />
@@ -339,7 +340,7 @@ const SortingScreen = (props) => {
             if (event.dragged.payload == Category.green) {
               setPoint(point + 200);
             } else {
-              console.log("incorrect!");
+              setIsWrong(true);
             }
           }}
         />
@@ -417,6 +418,12 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
+  },
+  hintBox: {
+    alignItems: "center",
+  },
+  headerSpace: {
+    paddingLeft: "15%",
   },
 });
 

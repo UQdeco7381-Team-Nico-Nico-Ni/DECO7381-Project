@@ -1,10 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Pressable,
-} from "react-native";
+import { Text, View, StyleSheet, Pressable } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
 import { Colors } from "../constants/styles";
@@ -75,16 +70,24 @@ const ProfileScreen = (props) => {
     <View style={styles.container}>
       <View style={styles.headerContainer}>
         <View style={styles.iconContainer}>
+          <EntypoIconButton
+            icon="arrow-with-circle-left"
+            size={36}
+            color={Colors.bigStone}
+            onPress={() => {
+              navigation.navigate("MainMenu");
+            }}
+          />
         </View>
         <View style={styles.title}>
-          <Text style={styles.titleFont}>Profile</Text>
+          <Text style={styles.headerFont}>My Profile</Text>
         </View>
       </View>
       <View style={styles.profile}>
         <Text>User Name: {userName}</Text>
       </View>
       <View style={styles.buttonContainer}>
-      <Pressable
+        <Pressable
           style={styles.buttonPink}
           onPress={() => {
             navigation.navigate("ResetPassword");
@@ -92,10 +95,7 @@ const ProfileScreen = (props) => {
         >
           <Text style={styles.buttonFont}>Change Password</Text>
         </Pressable>
-        <Pressable
-          style={styles.buttonGreen}
-          onPress={authCtx.logout}
-        >
+        <Pressable style={styles.buttonGreen} onPress={authCtx.logout}>
           <Text style={styles.buttonFont}>Log out</Text>
         </Pressable>
         <Pressable
@@ -118,25 +118,15 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 4,
-    alignItems: 'center',
+    alignItems: "center",
   },
   headerContainer: {
     flex: 1,
     flexDirection: "row",
   },
   title: {
-    flex: 1,
-    paddingTop: 15,
-    alignItems: "center",
-  },
-  titleFont: {
-    fontSize: 30,
-    textAlign: "center",
-    textAlignVertical: "center",
-    fontWeight: "bold",
-  },
-  iconContainer: {
-    justifyContent: "flex-start",
+    paddingTop: 10,
+    paddingLeft: 15,
   },
   profile: {
     flex: 1,
@@ -162,7 +152,7 @@ const styles = StyleSheet.create({
   },
   buttonFont: {
     // fontFamily: WendyOne,
-    color: 'white',
+    color: "white",
     fontSize: 22,
     textAlign: "center",
     textAlignVertical: "center",
@@ -186,7 +176,11 @@ const styles = StyleSheet.create({
     shadowRadius: 2.54,
     elevation: 3,
   },
+  headerFont: {
+    fontSize: 24,
+    fontWeight: "bold",
+    color: Colors.bigStone,
+  },
 });
 
 export default ProfileScreen;
-

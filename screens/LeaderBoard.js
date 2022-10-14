@@ -121,14 +121,14 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   title: {
-    paddingTop: 15,
+    paddingTop: 10,
     paddingLeft: 15,
   },
   iconContainer: {
     justifyContent: "flex-start",
   },
   profile: {
-    flex: 5,
+    flex: 3.5,
     alignItems: "center",
     justifyContent: "center",
   },
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     margin: 20,
-    resizeMode: 'auto',
+    resizeMode: 'contain',
   },
   personRecord: {
     textAlign: "center",
