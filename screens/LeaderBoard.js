@@ -80,18 +80,23 @@ const LeaderBoard = (props) => {
           <EntypoIconButton
             icon="arrow-with-circle-left"
             size={36}
-            color={Colors.rose}
+            color={Colors.bigStone}
             onPress={() => {
               navigation.navigate("MainMenu");
             }}
           />
         </View>
         <View style={styles.title}>
-          <Text>LeaderBoard</Text>
+          <Text style={styles.headerFont}>LeaderBoard</Text>
         </View>
       </View>
+
       <View style={styles.profile}>
-        <Text>My best:{personRecord}</Text>
+        <Image
+          source={require("../assets/images/avatar/avatar.png")}
+          style={styles.image}
+        ></Image>
+        <Text style={styles.personRecord}>My best: {personRecord}</Text>
       </View>
       <View style={styles.buttonContainer}>
         <RecordOutput
@@ -106,26 +111,49 @@ const LeaderBoard = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 40,
   },
   buttonContainer: {
-    flex: 4,
+    flex: 9,
   },
   headerContainer: {
     flex: 1,
+    paddingTop: 40,
     flexDirection: "row",
   },
   title: {
     paddingTop: 15,
-    alignItems: "center",
+    paddingLeft: 15,
   },
   iconContainer: {
     justifyContent: "flex-start",
   },
   profile: {
-    flex: 1,
+    flex: 5,
     alignItems: "center",
-  }
+    justifyContent: "center",
+  },
+  image: {
+    height: 100,
+    width: 100,
+    margin: 20,
+    resizeMode: 'auto',
+  },
+  personRecord: {
+    textAlign: "center",
+    width: 180,
+    height: 38,
+    borderWidth: 2,
+    borderColor: "#fff",
+    borderRadius: 15,
+    fontWeight: "bold",
+    fontSize: 16,
+    paddingTop: 7,
+  },
+  headerFont: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: Colors.bigStone,
+  },
 });
 
 export default LeaderBoard;
