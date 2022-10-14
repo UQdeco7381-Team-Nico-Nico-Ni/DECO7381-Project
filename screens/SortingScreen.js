@@ -22,6 +22,8 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../store/auth-context";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
 import ErrorOverlay from "../components/ui/ErrorOverlay";
+import PopModal from "../components/ui/PopModal";
+import ResultModal from "../components/ui/ResultModal";
 import AppLoading from "expo-app-loading";
 
 // Buttons
@@ -49,13 +51,28 @@ const SortingScreen = (props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState();
   const [isTryingLogin, setIsTryingLogin] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [isGameEnd, setIsGameEnd] = useState(false);
 
   const authCtx = useContext(AuthContext);
 
-  // test function to clear the all cards.
+  const closeModal = () => {
+    setModalVisible(false);
+    setIsGameEnd(false);
+  };
+
+  const backToMenu = () => {
+    navigation.navigate("MainMenu");
+  };
+
+  const endGame = () => {
+    setIsGameEnd(true);
+  };
+
+  // clear all cards of the current state.
   const clear = () => {
     setSelectedCards([]);
-  }
+  };
 
   // Track the game state, set the condition of generate the game cards
   useEffect(() => {
@@ -66,6 +83,15 @@ const SortingScreen = (props) => {
         setSelectedCards((selectedCards) => [...selectedCards, pickItem]);
         setGarbages(garbages.filter((item) => item !== pickItem));
       }
+    }
+    // Ending contents
+    if (
+      garbages &&
+      garbages.length == 0 &&
+      selectedCards &&
+      selectedCards.length == 0
+    ) {
+      setIsGameEnd(true);
     }
   }, [selectedCards.length]);
 
@@ -80,7 +106,7 @@ const SortingScreen = (props) => {
         setUserName(userName);
       }
 
-        setIsTryingLogin(false);
+      setIsTryingLogin(false);
     }
 
     fetchUser();
@@ -99,11 +125,11 @@ const SortingScreen = (props) => {
     try {
       await storeRecord(record);
       setIsSubmitting(false);
-      Alert.alert('Saved!');
+      Alert.alert("The result has been upload!");
     } catch (error) {
-      setError('Fail to record!')
+      setError("Fail to record!");
       setIsSubmitting(false);
-      Alert.alert('Fail to record!');
+      Alert.alert("Fail to record!");
     }
     navigation.goBack();
   }
@@ -133,27 +159,6 @@ const SortingScreen = (props) => {
     setSelectedCards(selectedCards.filter((item) => item.id !== garbage.id));
   };
 
-  // Ending contents
-  if (
-    garbages &&
-    garbages.length == 0 &&
-    selectedCards &&
-    selectedCards.length == 0
-  ) {
-    return (
-      <View style={styles.gameOver}>
-        <Text>Congratulation! You Got {point} Point!</Text>
-        <Button
-          title="Back to Menu"
-          onPress={() => {
-            navigation.navigate("MainMenu");
-          }}
-        />
-        <Button title="Save Record" onPress={() => handleSubmit()} />
-      </View>
-    );
-  }
-
   // Handle the ok button
   function errorHandler() {
     setError(null);
@@ -170,7 +175,7 @@ const SortingScreen = (props) => {
           size={36}
           color={Colors.rose}
           onPress={() => {
-            navigation.navigate("MainMenu");
+            setModalVisible(true);
           }}
         />
         <MaterialIconsButton
@@ -179,11 +184,37 @@ const SortingScreen = (props) => {
           size={36}
           color={Colors.rose}
           onPress={() => {
-            clear()
+            clear();
           }}
         />
-        <Timer style={styles.buttonContainer} />
+        <Timer
+          style={styles.buttonContainer}
+          timeUpMethod={() => {
+            endGame();
+          }}
+        />
         <ScoreBox points={point} style={styles.buttonContainer} />
+      </View>
+      <View style={styles.modal}>
+        {modalVisible && (
+          <PopModal
+            modalVisible={modalVisible}
+            leftButton={backToMenu}
+            rightButton={closeModal}
+            text="Are you sure to Exit?"
+          ></PopModal>
+        )}
+      </View>
+      <View style={styles.modal}>
+        {isGameEnd && (
+          <ResultModal
+            modalVisible={isGameEnd}
+            leftButton={backToMenu}
+            rightButton={handleSubmit}
+            point={point}
+            text="Score"
+          ></ResultModal>
+        )}
       </View>
 
       {/* Cards Section */}
@@ -297,7 +328,7 @@ const SortingScreen = (props) => {
               <View style={styles.binsContainer}>
                 <ImageBackground
                   source={bin_image}
-                  resizeMode='stretch'
+                  resizeMode="stretch"
                   style={styles.binImage}
                 ></ImageBackground>
               </View>

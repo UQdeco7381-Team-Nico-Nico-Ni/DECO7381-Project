@@ -66,7 +66,8 @@ function AuthenticatedStack() {
         name="Welcome"
         component={WelcomeScreen}
         options={{
-          headerShown: false
+          headerShown: false,
+          presentation: "modal",
         }}
       />
       <Stack.Screen

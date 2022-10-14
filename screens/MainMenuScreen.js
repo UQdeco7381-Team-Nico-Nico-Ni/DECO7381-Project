@@ -1,13 +1,14 @@
-import React from "react";
-import { View, StyleSheet, Button, Pressable, Text, Image, ImageBackground } from "react-native";
+import { useState } from "react";
+import { View, StyleSheet, Pressable, Text, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Colors } from "../constants/styles";
+import GameModeModal from "../components/ui/GameModeModal";
 
 function MainMenuScreen() {
   const navigation = useNavigation();
+  const [modalVisible, setModalVisible] = useState(false);
 
   return (
-
     <View style={styles.screen}>
       {/* load background image */}
       {/* <ImageBackground source={require("../assets/images/backgroundImage/mainMenu.png")} style={styles.backgroundImage}></ImageBackground> */}
@@ -17,12 +18,28 @@ function MainMenuScreen() {
         source={require("../assets/images/appLogo/applogo.png")}
         style={styles.image}
       ></Image>
+      <View style={styles.modal}>
+        {modalVisible && (
+          <GameModeModal
+            modalVisible={modalVisible}
+            leftButton={() => {
+              navigation.navigate("GameScreen");
+              setModalVisible(false);
+            }}
+            rightButton={() => {
+              navigation.navigate("Welcome");
+              setModalVisible(false);
+            }}
+            // text="Are you sure to Exit?"
+          ></GameModeModal>
+        )}
+      </View>
       <View style={styles.container}>
         {/* new game btn */}
         <Pressable
           style={styles.buttonPink}
           onPress={() => {
-            navigation.navigate("GameScreen");
+            setModalVisible(true);
           }}
         >
           <Text style={styles.buttonFont}>New Game</Text>
@@ -45,8 +62,8 @@ function MainMenuScreen() {
         >
           <Text style={styles.buttonFont}>Leader Board</Text>
         </Pressable>
-                {/* test board btn */}
-                <Pressable
+        {/* test board btn */}
+        <Pressable
           style={styles.buttonPink}
           onPress={() => {
             navigation.navigate("Welcome");
@@ -111,7 +128,7 @@ const styles = StyleSheet.create({
   },
   buttonFont: {
     // fontFamily: WendyOne,
-    color: 'white',
+    color: "white",
     fontSize: 24,
     textAlign: "center",
     textAlignVertical: "center",
@@ -123,7 +140,7 @@ const styles = StyleSheet.create({
   },
   backgroundImage: {
     flex: 1,
-    resizeMode: 'cover',
-    justifyContent: 'center',
+    resizeMode: "cover",
+    justifyContent: "center",
   },
 });
