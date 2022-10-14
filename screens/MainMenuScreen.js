@@ -95,7 +95,7 @@ const styles = StyleSheet.create({
   //   justifyContent: 'center',
   // },
   buttonPink: {
-    width: 200,
+    width: 220,
     height: 55,
     backgroundColor: Colors.bashfulness,
     borderWidth: 2,
@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   buttonGreen: {
-    width: 200,
+    width: 220,
     height: 55,
     backgroundColor: Colors.pineTree,
     borderWidth: 2,
@@ -141,6 +141,7 @@ const styles = StyleSheet.create({
   image: {
     width: 200,
     height: 200,
+    marginBottom: 30,
   },
   backgroundImage: {
     flex: 1,
