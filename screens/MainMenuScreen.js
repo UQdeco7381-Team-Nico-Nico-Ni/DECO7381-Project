@@ -21,13 +21,17 @@ function MainMenuScreen() {
       <View style={styles.modal}>
         {modalVisible && (
           <GameModeModal
+            text="Select the Game Mode"
             modalVisible={modalVisible}
-            leftButton={() => {
+            topButton={() => {
+              navigation.navigate("Welcome");
+              setModalVisible(false);
+            }}
+            middleButton={() => {
               navigation.navigate("GameScreen");
               setModalVisible(false);
             }}
-            rightButton={() => {
-              navigation.navigate("Welcome");
+            bottomButton={() => {
               setModalVisible(false);
             }}
             // text="Are you sure to Exit?"
@@ -48,7 +52,7 @@ function MainMenuScreen() {
         <Pressable
           style={styles.buttonGreen}
           onPress={() => {
-            navigation.navigate("Profile");
+            navigation.navigate("ProfileScreen");
           }}
         >
           <Text style={styles.buttonFont}>Profile</Text>

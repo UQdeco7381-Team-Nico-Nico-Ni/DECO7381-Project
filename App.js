@@ -11,7 +11,8 @@ import WelcomeScreen from "./screens/WelcomeScreen";
 import MainMenuScreen from "./screens/MainMenuScreen";
 import SortingScreen from "./screens/SortingScreen";
 import LeaderBoard from "./screens/LeaderBoard";
-import Profile from "./screens/Profile";
+import ProfileScreen from "./screens/ProfileScreen";
+import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 
 import { Colors } from "./constants/styles";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
@@ -85,8 +86,15 @@ function AuthenticatedStack() {
         }}
       />
       <Stack.Screen
-        name="Profile"
-        component={Profile}
+        name="ProfileScreen"
+        component={ProfileScreen}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ResetPassword"
+        component={ResetPasswordScreen}
         options={{
           headerShown: false,
         }}

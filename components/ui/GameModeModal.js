@@ -1,19 +1,27 @@
 import { View, Text, StyleSheet, Modal, Pressable, Alert } from "react-native";
 import { Colors } from "../../constants/styles";
 
-const GameModeModal = ({ modalVisible, text, leftButton, rightButton }) => {
+const GameModeModal = ({
+  modalVisible,
+  text,
+  topButton,
+  middleButton,
+  bottomButton,
+}) => {
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>{text}</Text>
           <View style={styles.buttonContainer}>
-            <Pressable style={styles.buttonPink} onPress={leftButton}>
+            <Pressable style={styles.buttonPink} onPress={topButton}>
               <Text style={styles.buttonFont}>Tutorial Mode</Text>
             </Pressable>
-            <View style={styles.space}></View>
-            <Pressable style={styles.buttonGreen} onPress={rightButton}>
+            <Pressable style={styles.buttonGreen} onPress={middleButton}>
               <Text style={styles.buttonFont}>Challenge Mode</Text>
+            </Pressable>
+            <Pressable style={styles.buttonPink} onPress={bottomButton}>
+              <Text style={styles.buttonFont}>Cancel</Text>
             </Pressable>
           </View>
         </View>
@@ -67,8 +75,8 @@ const styles = StyleSheet.create({
     width: "10%",
   },
   buttonPink: {
-    width: 100,
-    height: 50,
+    width: 200,
+    height: 55,
     backgroundColor: Colors.bashfulness,
     borderWidth: 2,
     borderColor: "#fff",
@@ -85,8 +93,8 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   buttonGreen: {
-    width: 100,
-    height: 50,
+    width: 200,
+    height: 55,
     backgroundColor: Colors.pineTree,
     borderWidth: 2,
     borderColor: "#fff",

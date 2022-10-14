@@ -1,18 +1,16 @@
 import { useState } from "react";
-import { Alert, StyleSheet, View, ImageBackground } from "react-native";
+import { Alert, StyleSheet, View } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import FlatButton from "../ui/FlatButton";
-import AuthForm from "./AuthForm";
+import ResetForm from "./ResetForm";
 import { Colors } from "../../constants/styles";
 
-function AuthContent({ isLogin, onAuthenticate }) {
+function ResetContent({ isLogin, onAuthenticate }) {
   const navigation = useNavigation();
 
   const [credentialsInvalid, setCredentialsInvalid] = useState({
-    email: false,
     password: false,
-    confirmEmail: false,
     confirmPassword: false,
   });
 
@@ -25,50 +23,44 @@ function AuthContent({ isLogin, onAuthenticate }) {
   }
 
   function submitHandler(credentials) {
-    let { email, confirmEmail, password, confirmPassword } = credentials;
+    let { password, confirmPassword } = credentials;
 
-    email = email.trim();
     password = password.trim();
 
-    const emailIsValid = email.includes("@");
-    const passwordIsValid = password.length > 4;
-    const emailsAreEqual = email === confirmEmail;
+    const passwordIsValid = password.length > 6;
     const passwordsAreEqual = password === confirmPassword;
 
     if (
-      !emailIsValid ||
       !passwordIsValid ||
-      (!isLogin && (!emailsAreEqual || !passwordsAreEqual))
+      (!isLogin && (!passwordsAreEqual))
     ) {
       Alert.alert("Invalid input", "Please check your entered credentials.");
       setCredentialsInvalid({
-        email: !emailIsValid,
-        confirmEmail: !emailIsValid || !emailsAreEqual,
         password: !passwordIsValid,
         confirmPassword: !passwordIsValid || !passwordsAreEqual,
       });
       return;
     }
-    onAuthenticate({ email, password });
+    onAuthenticate({ password });
   }
 
   return (
     <View style={styles.authContent}>
-      <AuthForm
+      <ResetForm
         isLogin={isLogin}
         onSubmit={submitHandler}
         credentialsInvalid={credentialsInvalid}
       />
       <View style={styles.buttons}>
         <FlatButton onPress={switchAuthModeHandler}>
-          {isLogin ? "Create a new user" : "Log in instead"}
+          {isLogin ? "" : "Log in"}
         </FlatButton>
       </View>
     </View>
   );
 }
 
-export default AuthContent;
+export default ResetContent;
 
 const styles = StyleSheet.create({
   authContent: {

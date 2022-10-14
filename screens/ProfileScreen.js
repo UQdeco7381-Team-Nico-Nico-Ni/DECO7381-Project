@@ -17,7 +17,7 @@ import { AuthContext } from "../store/auth-context";
 // Buttons
 import EntypoIconButton from "../components/ui/EntypoIconButton";
 
-const LeaderBoard = (props) => {
+const ProfileScreen = (props) => {
   const authCtx = useContext(AuthContext);
 
   const navigation = useNavigation();
@@ -87,7 +87,7 @@ const LeaderBoard = (props) => {
       <Pressable
           style={styles.buttonPink}
           onPress={() => {
-            navigation.navigate("Welcome");
+            navigation.navigate("ResetPassword");
           }}
         >
           <Text style={styles.buttonFont}>Change Password</Text>
@@ -188,5 +188,5 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LeaderBoard;
+export default ProfileScreen;
 
