@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View } from "react-native";
+import { Colors } from "../../../constants/styles";
 
 const RecordDataItem = (props) => {
   return (
@@ -19,22 +20,25 @@ export default RecordDataItem
 
 const styles = StyleSheet.create({
     recordItem: {
-      backgroundColor: 'white',
-      padding: 8,
-      marginVertical: 3,
+      backgroundColor: Colors.springGreen,
+      padding: 6,
+      marginVertical: 5,
     //   backgroundColor: GlobalStyles.colors.primary500,
       flexDirection: "row",
       justifyContent: "space-between",
       borderRadius: 6,
+      shadowColor: "rgba(0, 0, 0, 0.5)",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.22,
+      shadowRadius: 2.22,
       elevation: 3,
-    //   shadowColor: GlobalStyles.colors.gray500,
-      shadowRadius: 4,
-      shadowOffset: { width: 1, height: 1 },
-      shadowOpacity: 0.4,
     },
     textBase: {
     //   color: GlobalStyles.colors.primary50,
-        paddingHorizontal: 12,
+        paddingHorizontal: 10,
     },
     description: {
       fontSize: 16,

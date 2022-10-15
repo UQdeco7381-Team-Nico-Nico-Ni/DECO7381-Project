@@ -75,35 +75,39 @@ const LeaderBoard = (props) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.headerContainer}>
-        <View style={styles.iconContainer}>
-          <EntypoIconButton
-            icon="arrow-with-circle-left"
-            size={36}
-            color={Colors.bigStone}
-            onPress={() => {
-              navigation.navigate("MainMenu");
-            }}
+      <ImageBackground
+        source={require("../assets/images/backgroundImage/leaderboard.png")}
+        style={styles.backgroundImage}
+      >
+        <View style={styles.headerContainer}>
+          <View style={styles.iconContainer}>
+            <EntypoIconButton
+              icon="arrow-with-circle-left"
+              size={36}
+              color={Colors.bearBrown}
+              onPress={() => {
+                navigation.navigate("MainMenu");
+              }}
+            />
+          </View>
+          <View style={styles.title}>
+            <Text style={styles.headerFont}>LeaderBoard</Text>
+          </View>
+        </View>
+        <View style={styles.profile}>
+          <Image
+            source={require("../assets/images/avatar/avatar.png")}
+            style={styles.image}
+          ></Image>
+          <Text style={styles.personRecord}>My Best: {personRecord}</Text>
+        </View>
+        <View style={styles.buttonContainer}>
+          <RecordOutput
+            records={fetchedRecords}
+            fallbackText="No records found!"
           />
         </View>
-        <View style={styles.title}>
-          <Text style={styles.headerFont}>LeaderBoard</Text>
-        </View>
-      </View>
-
-      <View style={styles.profile}>
-        <Image
-          source={require("../assets/images/avatar/avatar.png")}
-          style={styles.image}
-        ></Image>
-        <Text style={styles.personRecord}>My best: {personRecord}</Text>
-      </View>
-      <View style={styles.buttonContainer}>
-        <RecordOutput
-          records={fetchedRecords}
-          fallbackText="No records found!"
-        />
-      </View>
+      </ImageBackground>
     </View>
   );
 };
@@ -114,6 +118,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 9,
+    marginTop: 20,
   },
   headerContainer: {
     flex: 1,
@@ -140,11 +145,12 @@ const styles = StyleSheet.create({
   },
   personRecord: {
     textAlign: "center",
-    width: 180,
+    width: 150,
     height: 38,
-    borderWidth: 2,
-    borderColor: "#fff",
-    borderRadius: 15,
+    color: Colors.bigStone,
+    borderWidth: 3,
+    borderColor: Colors.springGreen,
+    borderRadius: 18,
     fontWeight: "bold",
     fontSize: 16,
     paddingTop: 7,
@@ -152,7 +158,11 @@ const styles = StyleSheet.create({
   headerFont: {
     fontSize: 24,
     fontWeight: "bold",
-    color: Colors.bigStone,
+    color: Colors.bearBrown,
+  },
+  backgroundImage: {
+    flex: 1,
+    justifyContent: "center",
   },
 });
 

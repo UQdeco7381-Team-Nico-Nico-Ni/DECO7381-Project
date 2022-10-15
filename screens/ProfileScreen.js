@@ -83,7 +83,7 @@ const ProfileScreen = (props) => {
             <EntypoIconButton
               icon="arrow-with-circle-left"
               size={36}
-              color={Colors.bigStone}
+              color={Colors.bearBrown}
               onPress={() => {
                 navigation.navigate("MainMenu");
               }}
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
   headerFont: {
     fontSize: 24,
     fontWeight: "bold",
-    color: Colors.bigStone,
+    color: Colors.bearBrown,
   },
   image: {
     height: 120,
