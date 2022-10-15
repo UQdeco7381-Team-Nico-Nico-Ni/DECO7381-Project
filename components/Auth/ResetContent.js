@@ -1,10 +1,9 @@
 import { useState } from "react";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, StyleSheet, View, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 
 import FlatButton from "../ui/FlatButton";
 import ResetForm from "./ResetForm";
-import { Colors } from "../../constants/styles";
 
 function ResetContent({ isLogin, onAuthenticate }) {
   const navigation = useNavigation();
@@ -30,10 +29,7 @@ function ResetContent({ isLogin, onAuthenticate }) {
     const passwordIsValid = password.length > 6;
     const passwordsAreEqual = password === confirmPassword;
 
-    if (
-      !passwordIsValid ||
-      (!isLogin && (!passwordsAreEqual))
-    ) {
+    if (!passwordIsValid || (!isLogin && !passwordsAreEqual)) {
       Alert.alert("Invalid input", "Please check your entered credentials.");
       setCredentialsInvalid({
         password: !passwordIsValid,
@@ -45,17 +41,25 @@ function ResetContent({ isLogin, onAuthenticate }) {
   }
 
   return (
-    <View style={styles.authContent}>
-      <ResetForm
-        isLogin={isLogin}
-        onSubmit={submitHandler}
-        credentialsInvalid={credentialsInvalid}
-      />
-      <View style={styles.buttons}>
-        <FlatButton onPress={switchAuthModeHandler}>
-          {isLogin ? "" : "Log in"}
-        </FlatButton>
-      </View>
+    <View style={styles.container}>
+      <ImageBackground
+        source={require("../../assets/images/backgroundImage/profile.png")}
+        resizeMode="stretch"
+        style={styles.image}
+      >
+        <View style={styles.authContent}>
+          <ResetForm
+            isLogin={isLogin}
+            onSubmit={submitHandler}
+            credentialsInvalid={credentialsInvalid}
+          />
+          <View style={styles.buttons}>
+            <FlatButton onPress={switchAuthModeHandler}>
+              {isLogin ? "" : "Log in here"}
+            </FlatButton>
+          </View>
+        </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -63,19 +67,20 @@ function ResetContent({ isLogin, onAuthenticate }) {
 export default ResetContent;
 
 const styles = StyleSheet.create({
-  authContent: {
+  container: {
     flex: 1,
-    justifyContent: 'center',
-    alignContent: 'center',
-    marginHorizontal: 32,
-    padding: 16,
-    borderRadius: 8,
-  },
-  buttons: {
-    marginTop: 8,
   },
   image: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
+  },
+  authContent: {
+    marginTop: 64,
+    marginHorizontal: 32,
+    padding: 16,
+    alignItems: "center",
+  },
+  buttons: {
+    marginTop: 8,
   },
 });

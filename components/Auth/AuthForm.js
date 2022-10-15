@@ -94,13 +94,7 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
 export default AuthForm;
 
 const styles = StyleSheet.create({
-  form: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: "center",
-    marginTop: 200,
-  },
   buttons: {
-    marginTop: 15,
-  }
+    marginTop: 12,
+  },
 });

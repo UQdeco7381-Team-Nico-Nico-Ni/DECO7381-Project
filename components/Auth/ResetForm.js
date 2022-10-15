@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { StyleSheet, View, ImageBackground } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import CustomButton from "../ui/CustomButton";
 import Input from "./Input";
 
 function ResetForm({ isLogin, onSubmit, credentialsInvalid }) {
+  const navigation = useNavigation();
+
   const [enteredPassword, setEnteredPassword] = useState("");
   const [enteredConfirmPassword, setEnteredConfirmPassword] = useState("");
 
@@ -27,6 +30,10 @@ function ResetForm({ isLogin, onSubmit, credentialsInvalid }) {
       password: enteredPassword,
       confirmPassword: enteredConfirmPassword,
     });
+  }
+
+  function goBack() {
+    navigation.goBack();
   }
 
   return (
@@ -52,11 +59,8 @@ function ResetForm({ isLogin, onSubmit, credentialsInvalid }) {
             {isLogin ? "Submit" : "Login"}
           </CustomButton>
         </View>
-        <View>
-          <ImageBackground
-            source={require("../../assets/images/backgroundImage/login.png")}
-            style={styles.backgroundImage}
-          ></ImageBackground>
+        <View style={styles.buttons}>
+          <CustomButton onPress={goBack}>Cancel</CustomButton>
         </View>
       </View>
     </View>
@@ -68,10 +72,5 @@ export default ResetForm;
 const styles = StyleSheet.create({
   buttons: {
     marginTop: 12,
-  },
-  backgroundImage: {
-    flex: 1,
-    resizeMode: "cover",
-    justifyContent: "center",
   },
 });
