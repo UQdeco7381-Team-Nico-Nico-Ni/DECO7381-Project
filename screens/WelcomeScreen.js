@@ -51,6 +51,7 @@ const Welcome = (props) => {
   const [error, setError] = useState();
   const [isTryingLogin, setIsTryingLogin] = useState(true);
   const [isWrong, setIsWrong] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
   const [isGetHint, setIsGetHint] = useState(false);
   const [hint, setHint] = useState();
 
@@ -65,6 +66,7 @@ const Welcome = (props) => {
   // trigger when made the mistake
   const hintTriggered = () => {
     setIsWrong(false);
+    setIsCorrect(false);
   };
 
   // Track the game state, set the condition of generate the game cards
@@ -219,6 +221,7 @@ const Welcome = (props) => {
         </View>
         <View style={styles.wrongAnswer}>
           {isWrong && <FadeInView text="mistake" />}
+          {isCorrect && <FadeInView text="correct!" />}
         </View>
 
         {/* Bins Section */}
@@ -251,6 +254,7 @@ const Welcome = (props) => {
             onReceiveDragDrop={(event) => {
               if (event.dragged.payload == Category.general) {
                 setPoint(point + 200);
+                setIsCorrect(true);
               } else {
                 setIsWrong(true);
               }
@@ -291,6 +295,7 @@ const Welcome = (props) => {
             onReceiveDragDrop={(event) => {
               if (event.dragged.payload == Category.recycle) {
                 setPoint(point + 200);
+                setIsCorrect(true);
               } else {
                 setIsWrong(true);
               }
@@ -333,6 +338,7 @@ const Welcome = (props) => {
             onReceiveDragDrop={(event) => {
               if (event.dragged.payload == Category.green) {
                 setPoint(point + 200);
+                setIsCorrect(true);
               } else {
                 setIsWrong(true);
               }

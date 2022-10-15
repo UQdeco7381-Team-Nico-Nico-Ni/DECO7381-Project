@@ -11,6 +11,7 @@ const ResultModal = ({
 }) => {
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
+
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
           <Text style={styles.modalText}>Game Completed!</Text>

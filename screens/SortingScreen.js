@@ -55,6 +55,7 @@ const SortingScreen = (props) => {
   const [userName, setUserName] = useState();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isWrong, setIsWrong] = useState(false);
+  const [isCorrect, setIsCorrect] = useState(false);
   const [error, setError] = useState();
   const [isTryingLogin, setIsTryingLogin] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
@@ -78,6 +79,7 @@ const SortingScreen = (props) => {
   // trigger when made the mistake
   const hintTriggered = () => {
     setIsWrong(false);
+    setIsCorrect(false);
   };
 
   // Track the game state, set the condition of generate the game cards
@@ -225,7 +227,10 @@ const SortingScreen = (props) => {
         </View>
       </GestureHandlerRootView>
 
-      <View style={styles}>{isWrong && <FadeInView text="mistake" />}</View>
+      <View style={styles.hintBox}>
+        {isWrong && <FadeInView text="mistake" />}
+        {isCorrect && <FadeInView text="correct!" />}
+      </View>
 
       {/* Bins Section */}
       <View style={styles.container}>
@@ -257,6 +262,7 @@ const SortingScreen = (props) => {
           onReceiveDragDrop={(event) => {
             if (event.dragged.payload == Category.general) {
               setPoint(point + 200);
+              setIsCorrect(true);
             } else {
               setIsWrong(true);
             }
@@ -297,6 +303,7 @@ const SortingScreen = (props) => {
           onReceiveDragDrop={(event) => {
             if (event.dragged.payload == Category.recycle) {
               setPoint(point + 200);
+              setIsCorrect(true);
             } else {
               setIsWrong(true);
             }
@@ -339,6 +346,7 @@ const SortingScreen = (props) => {
           onReceiveDragDrop={(event) => {
             if (event.dragged.payload == Category.green) {
               setPoint(point + 200);
+              setIsCorrect(true);
             } else {
               setIsWrong(true);
             }
