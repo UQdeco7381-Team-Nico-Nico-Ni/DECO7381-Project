@@ -77,6 +77,7 @@ const ProfileScreen = (props) => {
       <ImageBackground
         source={require("../assets/images/backgroundImage/profile.png")}
         style={styles.backgroundImage}
+        resizeMode="stretch"
       >
         <View style={styles.headerContainer}>
           <View style={styles.iconContainer}>
@@ -131,7 +132,6 @@ const styles = StyleSheet.create({
   headerContainer: {
     flex: 1,
     flexDirection: "row",
-
   },
   title: {
     paddingTop: 10,

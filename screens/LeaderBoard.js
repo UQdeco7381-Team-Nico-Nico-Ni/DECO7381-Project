@@ -70,6 +70,7 @@ const LeaderBoard = (props) => {
       <ImageBackground
         source={require("../assets/images/backgroundImage/leaderboard.png")}
         style={styles.backgroundImage}
+        resizeMode="stretch"
       >
         <View style={styles.headerContainer}>
           <View style={styles.iconContainer}>
