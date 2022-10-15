@@ -54,16 +54,23 @@ function AuthContent({ isLogin, onAuthenticate }) {
 
   return (
     <View style={styles.authContent}>
-      <AuthForm
-        isLogin={isLogin}
-        onSubmit={submitHandler}
-        credentialsInvalid={credentialsInvalid}
-      />
-      <View style={styles.buttons}>
-        <FlatButton onPress={switchAuthModeHandler}>
-          {isLogin ? "Create a new user" : "Log in instead"}
-        </FlatButton>
-      </View>
+      <ImageBackground
+        source={require("../../assets/images/backgroundImage/signIn.png")}
+        resizeMode="cover"
+        style={styles.image}
+      >
+        <AuthForm
+          style={styles.container}
+          isLogin={isLogin}
+          onSubmit={submitHandler}
+          credentialsInvalid={credentialsInvalid}
+        />
+        <View style={styles.buttons}>
+          <FlatButton onPress={switchAuthModeHandler}>
+            {isLogin ? "Create a new user" : "Log in instead"}
+          </FlatButton>
+        </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -73,17 +80,15 @@ export default AuthContent;
 const styles = StyleSheet.create({
   authContent: {
     flex: 1,
-    justifyContent: 'center',
-    alignContent: 'center',
-    marginHorizontal: 32,
-    padding: 16,
-    borderRadius: 8,
   },
-  buttons: {
-    marginTop: 8,
+  container: {
+    flex: 1,
   },
   image: {
     flex: 1,
-    justifyContent: "center"
+    justifyContent: "center",
+  },
+  buttons: {
+    marginBottom: 150,
   },
 });

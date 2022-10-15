@@ -52,7 +52,7 @@ function AuthenticatedStack() {
         component={MainMenuScreen}
         options={{
           title: "Welcome To Litter Panda!",
-          headerShown: true,
+          headerShown: false,
         }}
       />
       <Stack.Screen

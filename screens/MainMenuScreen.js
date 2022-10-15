@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { View, StyleSheet, Pressable, Text, Image } from "react-native";
+import {
+  View,
+  StyleSheet,
+  Pressable,
+  Text,
+  Image,
+  ImageBackground,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Colors } from "../constants/styles";
 import GameModeModal from "../components/ui/GameModeModal";
@@ -11,62 +18,60 @@ function MainMenuScreen() {
   return (
     <View style={styles.screen}>
       {/* load background image */}
-      {/* <ImageBackground source={require("../assets/images/backgroundImage/mainMenu.png")} style={styles.backgroundImage}></ImageBackground> */}
-
-      {/* load game image */}
-      <Image
-        source={require("../assets/images/appLogo/applogo.png")}
-        style={styles.image}
-      ></Image>
-      <View style={styles.modal}>
-        {modalVisible && (
-          <GameModeModal
-            text="Select the Game Mode"
-            modalVisible={modalVisible}
-            topButton={() => {
-              navigation.navigate("TutorialScreen");
-              setModalVisible(false);
+      <ImageBackground
+        source={require("../assets/images/backgroundImage/mainMenu.png")}
+        style={styles.backgroundImage}
+      >
+        <View style={styles.modal}>
+          {modalVisible && (
+            <GameModeModal
+              text="Select the Game Mode"
+              modalVisible={modalVisible}
+              topButton={() => {
+                navigation.navigate("TutorialScreen");
+                setModalVisible(false);
+              }}
+              middleButton={() => {
+                navigation.navigate("GameScreen");
+                setModalVisible(false);
+              }}
+              bottomButton={() => {
+                setModalVisible(false);
+              }}
+              // text="Are you sure to Exit?"
+            ></GameModeModal>
+          )}
+        </View>
+        <View style={styles.container}>
+          {/* new game btn */}
+          <Pressable
+            style={styles.buttonPink}
+            onPress={() => {
+              setModalVisible(true);
             }}
-            middleButton={() => {
-              navigation.navigate("GameScreen");
-              setModalVisible(false);
+          >
+            <Text style={styles.buttonFont}>New Game</Text>
+          </Pressable>
+          {/* profile btn */}
+          <Pressable
+            style={styles.buttonGreen}
+            onPress={() => {
+              navigation.navigate("ProfileScreen");
             }}
-            bottomButton={() => {
-              setModalVisible(false);
+          >
+            <Text style={styles.buttonFont}>Profile</Text>
+          </Pressable>
+          {/* leader board btn */}
+          <Pressable
+            style={styles.buttonPink}
+            onPress={() => {
+              navigation.navigate("LeaderBoard");
             }}
-            // text="Are you sure to Exit?"
-          ></GameModeModal>
-        )}
-      </View>
-      <View style={styles.container}>
-        {/* new game btn */}
-        <Pressable
-          style={styles.buttonPink}
-          onPress={() => {
-            setModalVisible(true);
-          }}
-        >
-          <Text style={styles.buttonFont}>New Game</Text>
-        </Pressable>
-        {/* profile btn */}
-        <Pressable
-          style={styles.buttonGreen}
-          onPress={() => {
-            navigation.navigate("ProfileScreen");
-          }}
-        >
-          <Text style={styles.buttonFont}>Profile</Text>
-        </Pressable>
-        {/* leader board btn */}
-        <Pressable
-          style={styles.buttonPink}
-          onPress={() => {
-            navigation.navigate("LeaderBoard");
-          }}
-        >
-          <Text style={styles.buttonFont}>Leader Board</Text>
-        </Pressable>
-      </View>
+          >
+            <Text style={styles.buttonFont}>Leader Board</Text>
+          </Pressable>
+        </View>
+      </ImageBackground>
     </View>
   );
 }
@@ -76,15 +81,13 @@ export default MainMenuScreen;
 const styles = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: Colors.babyCream,
-    alignItems: "center",
-    justifyContent: "center",
   },
-  // container: {
-  //   borderTop: 30,
-  //   flex: 1,
-  //   justifyContent: 'center',
-  // },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: "center",
+    marginTop: 120,
+  },
   buttonPink: {
     width: 220,
     height: 55,
@@ -129,14 +132,8 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
     fontWeight: "bold",
   },
-  image: {
-    width: 200,
-    height: 200,
-    marginBottom: 30,
-  },
   backgroundImage: {
     flex: 1,
-    resizeMode: "cover",
     justifyContent: "center",
   },
 });

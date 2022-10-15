@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { StyleSheet, View, ImageBackground } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import CustomButton from "../ui/CustomButton";
 import Input from "./Input";
@@ -86,12 +86,6 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
             {isLogin ? "Log In" : "Sign Up"}
           </CustomButton>
         </View>
-        <View>
-          <ImageBackground
-            source={require("../../assets/images/backgroundImage/login.png")}
-            style={styles.backgroundImage}
-          ></ImageBackground>
-        </View>
       </View>
     </View>
   );
@@ -100,12 +94,13 @@ function AuthForm({ isLogin, onSubmit, credentialsInvalid }) {
 export default AuthForm;
 
 const styles = StyleSheet.create({
-  buttons: {
-    marginTop: 12,
-  },
-  backgroundImage: {
+  form: {
     flex: 1,
-    resizeMode: 'cover',
     justifyContent: 'center',
+    alignItems: "center",
+    marginTop: 200,
   },
+  buttons: {
+    marginTop: 15,
+  }
 });
