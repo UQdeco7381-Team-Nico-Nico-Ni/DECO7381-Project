@@ -10,9 +10,10 @@ import {
 
 import { useNavigation } from "@react-navigation/native";
 import { Colors } from "../constants/styles";
-import { fetchPersonalRecords } from "../util/htttp";
+import { fetchRecords, fetchPersonalRecords } from "../util/htttp";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
 import ErrorOverlay from "../components/ui/ErrorOverlay";
+import RecordOutput from "../components/ui/RecordsUI/RecordOutput";
 import { AuthContext } from "../store/auth-context";
 
 // Buttons
@@ -28,7 +29,20 @@ const ProfileScreen = (props) => {
   const [personRecord, setPersonRecord] = useState();
   const [fetchedRecords, setFetchedRecords] = useState([]);
 
-  // Get the personal best record from database
+  useEffect(() => {
+    async function getRecords() {
+      setIsFetching(true);
+      try {
+        const records = await fetchRecords();
+        setFetchedRecords(records);
+      } catch (error) {
+        setError("Could not fetch Records!");
+      }
+      setIsFetching(false);
+    }
+    getRecords();
+  }, []);
+
   useEffect(() => {
     async function getPersonalRecords() {
       setIsFetching(true);
