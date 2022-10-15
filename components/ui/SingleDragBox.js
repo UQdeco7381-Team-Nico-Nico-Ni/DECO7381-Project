@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, Image } from "react-native";
-import { DraxProvider, DraxView } from "react-native-drax";
+import { Text, StyleSheet, Image } from "react-native";
+import { DraxView } from "react-native-drax";
 import GarbageImages from "../../data/GarbageImages";
 
 const SingleDragBox = (props) => {
@@ -19,7 +19,7 @@ const SingleDragBox = (props) => {
     >
       <Text style={styles.title}>{props.title}</Text>
       <Image
-      imageAssetsFolder
+        imageAssetsFolder
         source={GarbageImages[props.imageUrl]}
         style={{ width: 80, height: 80 }}
       />
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     paddingBottom: 5,
-  }
+  },
 });
 
 export default SingleDragBox;

@@ -1,5 +1,4 @@
 import { Pressable, StyleSheet } from 'react-native';
-// import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 
 function EntypoIconButton({ icon, color, size, onPress }) {

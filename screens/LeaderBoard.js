@@ -1,13 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  Button,
-  Image,
-  ImageBackground,
-} from "react-native";
-
+import { Text, View, StyleSheet, Image } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import { Colors } from "../constants/styles";
 import { fetchRecords, fetchPersonalRecords } from "../util/htttp";

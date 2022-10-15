@@ -6,7 +6,7 @@ const RecordDataItem = (props) => {
     <View style={styles.recordItem}>
     <View>
       <Text style={[styles.textBase, styles.description]}>
-        {props.player}
+        {props.player.slice(0, props.player.indexOf('@'))}
       </Text>
     </View>
     <View style={styles.pointContainer}>
