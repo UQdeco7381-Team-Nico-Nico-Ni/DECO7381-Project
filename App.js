@@ -7,7 +7,7 @@ import AppLoading from "expo-app-loading";
 
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
-import WelcomeScreen from "./screens/WelcomeScreen";
+import TutorialScreen from "./screens/TutorialScreen";
 import MainMenuScreen from "./screens/MainMenuScreen";
 import SortingScreen from "./screens/SortingScreen";
 import LeaderBoard from "./screens/LeaderBoard";
@@ -53,19 +53,11 @@ function AuthenticatedStack() {
         options={{
           title: "Welcome To Litter Panda!",
           headerShown: true,
-          headerRight: ({ tintColor }) => (
-            <IoniconsIconButton
-              icon="exit"
-              color={tintColor}
-              size={24}
-              onPress={authCtx.logout}
-            />
-          ),
         }}
       />
       <Stack.Screen
-        name="Welcome"
-        component={WelcomeScreen}
+        name="TutorialScreen"
+        component={TutorialScreen}
         options={{
           headerShown: false,
           presentation: "modal",

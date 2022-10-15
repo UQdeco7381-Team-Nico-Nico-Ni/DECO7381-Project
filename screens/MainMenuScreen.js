@@ -24,7 +24,7 @@ function MainMenuScreen() {
             text="Select the Game Mode"
             modalVisible={modalVisible}
             topButton={() => {
-              navigation.navigate("Welcome");
+              navigation.navigate("TutorialScreen");
               setModalVisible(false);
             }}
             middleButton={() => {
@@ -65,15 +65,6 @@ function MainMenuScreen() {
           }}
         >
           <Text style={styles.buttonFont}>Leader Board</Text>
-        </Pressable>
-        {/* test board btn */}
-        <Pressable
-          style={styles.buttonPink}
-          onPress={() => {
-            navigation.navigate("Welcome");
-          }}
-        >
-          <Text style={styles.buttonFont}>Test Button</Text>
         </Pressable>
       </View>
     </View>

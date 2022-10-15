@@ -32,7 +32,6 @@ import FadeInView from "../components/ui/FadeInView";
 // Buttons
 import CustomButton from "../components/ui/CustomButton";
 import EntypoIconButton from "../components/ui/EntypoIconButton";
-import MaterialIconsButton from "../components/ui/MaterialIconsButton";
 
 // Method of generate random numbers.
 const generateRandomBetween = (min, max) => {

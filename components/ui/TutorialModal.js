@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Modal, Pressable, Image } from "react-native";
 import { Colors } from "../../constants/styles";
 
-const PopModal = ({ modalVisible, text, leftButton, rightButton }) => {
+const TutorialModal = ({ modalVisible, text, centerButton }) => {
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
       <View style={styles.centeredView}>
@@ -18,12 +18,8 @@ const PopModal = ({ modalVisible, text, leftButton, rightButton }) => {
             resizeMode="cover"
           />
           <View style={styles.buttonContainer}>
-            <Pressable style={styles.buttonPink} onPress={leftButton}>
-              <Text style={styles.buttonFont}>YES</Text>
-            </Pressable>
-            <View style={styles.space}></View>
-            <Pressable style={styles.buttonGreen} onPress={rightButton}>
-              <Text style={styles.buttonFont}>NO</Text>
+            <Pressable style={styles.buttonPink} onPress={centerButton}>
+              <Text style={styles.buttonFont}>END</Text>
             </Pressable>
           </View>
         </View>
@@ -32,7 +28,7 @@ const PopModal = ({ modalVisible, text, leftButton, rightButton }) => {
   );
 };
 
-export default PopModal;
+export default TutorialModal;
 
 const styles = StyleSheet.create({
   centeredView: {

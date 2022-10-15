@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     height: 100,
     width: 100,
     margin: 20,
-    resizeMode: 'contain',
+    resizeMode: "contain",
   },
   personRecord: {
     textAlign: "center",
@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
   },
   headerFont: {
     fontSize: 24,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     color: Colors.bigStone,
   },
 });

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Modal, Pressable, Alert } from "react-native";
+import { View, Text, StyleSheet, Modal, Pressable, Image } from "react-native";
 import { Colors } from "../../constants/styles";
 import ScoreBox from "./ScoreBox";
 
@@ -11,12 +11,16 @@ const ResultModal = ({
 }) => {
   return (
     <Modal animationType="slide" transparent={true} visible={modalVisible}>
-
       <View style={styles.centeredView}>
         <View style={styles.modalView}>
+          <Image
+            style={styles.banner}
+            source={require("../../assets/images/backgroundImage/banner_hooray.png")}
+            resizeMode="cover"
+          />
           <Text style={styles.modalText}>Game Completed!</Text>
           <Text style={styles.modalText}>{text}</Text>
-          <View style={styles.score}>
+          <View style={styles.emoji}>
             <ScoreBox points={point} />
           </View>
           <View style={styles.buttonContainer}>
@@ -45,10 +49,8 @@ const styles = StyleSheet.create({
   modalView: {
     width: "70%",
     height: "45%",
-    margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
-    padding: 20,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -59,13 +61,8 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5,
   },
-  button: {
-    flex: 1,
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
   modalText: {
+    top: -140,
     marginBottom: 15,
     textAlign: "center",
     fontSize: 20,
@@ -76,6 +73,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
+    top: -95,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
@@ -127,8 +125,12 @@ const styles = StyleSheet.create({
     textAlignVertical: "center",
     fontWeight: "bold",
   },
-  score: {
-    justifyContent: "center",
-    alignItems: "center",
+  banner: {
+    top: -150,
+    zIndex: 1,
+  },
+  emoji: {
+    top: -140,
+    zIndex: 1,
   },
 });

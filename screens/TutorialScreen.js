@@ -3,7 +3,7 @@ import {
   Text,
   View,
   StyleSheet,
-  Button,
+  Pressable,
   ImageBackground,
   Alert,
 } from "react-native";
@@ -24,6 +24,8 @@ import ErrorOverlay from "../components/ui/ErrorOverlay";
 import AppLoading from "expo-app-loading";
 import HintBox from "../components/ui/HintBox";
 import FadeInView from "../components/ui/FadeInView";
+import PopModal from "../components/ui/PopModal";
+import TutorialModal from "../components/ui/TutorialModal";
 
 // Buttons
 import CustomButton from "../components/ui/CustomButton";
@@ -38,7 +40,7 @@ const generateRandomBetween = (min, max) => {
   return rndNum;
 };
 
-const Welcome = (props) => {
+const TutorialScreen = (props) => {
   const navigation = useNavigation();
 
   const [received, setReceived] = useState([]);
@@ -54,6 +56,8 @@ const Welcome = (props) => {
   const [isCorrect, setIsCorrect] = useState(false);
   const [isGetHint, setIsGetHint] = useState(false);
   const [hint, setHint] = useState();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [isGameEnd, setIsGameEnd] = useState(false);
 
   const authCtx = useContext(AuthContext);
 
@@ -69,6 +73,19 @@ const Welcome = (props) => {
     setIsCorrect(false);
   };
 
+  const closeModal = () => {
+    setModalVisible(false);
+    setIsGameEnd(false);
+  };
+
+  const endGame = () => {
+    setIsGameEnd(true);
+  };
+
+  const backToMenu = () => {
+    navigation.navigate("MainMenu");
+  };
+
   // Track the game state, set the condition of generate the game cards
   useEffect(() => {
     if (selectedCards.length < 1) {
@@ -79,6 +96,15 @@ const Welcome = (props) => {
         setSelectedCards((selectedCards) => [...selectedCards, pickItem]);
         setGarbages(garbages.filter((item) => item !== pickItem));
         setHint(hint);
+      }
+      // Ending contents
+      if (
+        garbages &&
+        garbages.length == 0 &&
+        selectedCards &&
+        selectedCards.length == 0
+      ) {
+        setIsGameEnd(true);
       }
     }
   }, [selectedCards.length]);
@@ -149,27 +175,6 @@ const Welcome = (props) => {
     setIsGetHint(false);
   };
 
-  // Ending contents
-  if (
-    garbages &&
-    garbages.length == 0 &&
-    selectedCards &&
-    selectedCards.length == 0
-  ) {
-    return (
-      <View style={styles.gameOver}>
-        <Text>Congratulation! You Got {point} Point!</Text>
-        <Button
-          title="Back to Menu"
-          onPress={() => {
-            navigation.navigate("MainMenu");
-          }}
-        />
-        <Button title="Save Record" onPress={() => handleSubmit()} />
-      </View>
-    );
-  }
-
   // Handle the ok button
   function errorHandler() {
     setError(null);
@@ -187,7 +192,7 @@ const Welcome = (props) => {
             size={36}
             color={Colors.rose}
             onPress={() => {
-              navigation.navigate("MainMenu");
+              setModalVisible(true);
             }}
           />
           <MaterialIconsButton
@@ -204,7 +209,29 @@ const Welcome = (props) => {
             }}
           />
           <View style={styles.buttonContainer} />
-          <Button title="skip" onPress={clear} />
+          <Pressable style={styles.skipButton} onPress={clear}>
+            <Text style={styles.buttonFont}>Skip</Text>
+          </Pressable>
+        </View>
+
+        <View style={styles.modal}>
+          {modalVisible && (
+            <PopModal
+              modalVisible={modalVisible}
+              leftButton={backToMenu}
+              rightButton={closeModal}
+              text="Are you sure to Exit?"
+            ></PopModal>
+          )}
+        </View>
+        <View style={styles.modal}>
+          {isGameEnd && (
+            <TutorialModal
+              modalVisible={isGameEnd}
+              centerButton={backToMenu}
+              text="Congrats! Tutorial is End!"
+            ></TutorialModal>
+          )}
         </View>
 
         {/* Cards Section */}
@@ -419,6 +446,31 @@ const styles = StyleSheet.create({
   wrongAnswer: {
     alignItems: "center",
   },
+  skipButton: {
+    width: 70,
+    height: 35,
+    backgroundColor: Colors.bashfulness,
+    borderWidth: 2,
+    borderColor: "#fff",
+    borderRadius: 33,
+    justifyContent: "center",
+    shadowColor: "#000000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.17,
+    shadowRadius: 2.54,
+    elevation: 3,
+  },
+  buttonFont: {
+    // fontFamily: WendyOne,
+    color: "white",
+    fontSize: 18,
+    textAlign: "center",
+    textAlignVertical: "center",
+    fontWeight: "bold",
+  },
 });
 
-export default Welcome;
+export default TutorialScreen;

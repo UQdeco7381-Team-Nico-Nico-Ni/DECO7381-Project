@@ -1,11 +1,11 @@
-import { useContext, useState } from 'react';
-import { Alert } from 'react-native';
+import { useContext, useState } from "react";
+import { Alert } from "react-native";
 
-import AuthContent from '../components/Auth/AuthContent';
-import LoadingOverlay from '../components/ui/LoadingOverlay';
-import { AuthContext } from '../store/auth-context';
-import { login } from '../util/auth';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AuthContent from "../components/Auth/AuthContent";
+import LoadingOverlay from "../components/ui/LoadingOverlay";
+import { AuthContext } from "../store/auth-context";
+import { login } from "../util/auth";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function LoginScreen() {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
@@ -17,12 +17,12 @@ function LoginScreen() {
     try {
       const token = await login(email, password);
       authCtx.authenticate(token);
-      AsyncStorage.setItem('userName', email);
+      AsyncStorage.setItem("userName", email);
       authCtx.getUser(email);
     } catch (error) {
       Alert.alert(
-        'Authentication failed!',
-        'Could not log you in. Please check your credentials or try again later!'
+        "Authentication failed!",
+        "Could not log you in. Please check your credentials or try again later!"
       );
       setIsAuthenticating(false);
     }

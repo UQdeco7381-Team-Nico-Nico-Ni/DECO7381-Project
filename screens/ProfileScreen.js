@@ -20,7 +20,6 @@ const ProfileScreen = (props) => {
   const [error, setError] = useState();
   const [userName, setUserName] = useState(authCtx.currentUser);
   const [personRecord, setPersonRecord] = useState();
-
   const [fetchedRecords, setFetchedRecords] = useState([]);
 
   useEffect(() => {
@@ -97,14 +96,6 @@ const ProfileScreen = (props) => {
         </Pressable>
         <Pressable style={styles.buttonGreen} onPress={authCtx.logout}>
           <Text style={styles.buttonFont}>Log out</Text>
-        </Pressable>
-        <Pressable
-          style={styles.buttonPink}
-          onPress={() => {
-            navigation.goBack();
-          }}
-        >
-          <Text style={styles.buttonFont}>Return</Text>
         </Pressable>
       </View>
     </View>
