@@ -1,13 +1,10 @@
 import { useState, useEffect, useContext, useRef } from "react";
 import {
-  Text,
   View,
   StyleSheet,
-  Button,
   ImageBackground,
   Alert,
   Animated,
-  LogBox,
 } from "react-native";
 
 import { useNavigation } from "@react-navigation/native";
@@ -23,14 +20,12 @@ import { storeRecord } from "../util/htttp";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../store/auth-context";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
-import ErrorOverlay from "../components/ui/ErrorOverlay";
 import PopModal from "../components/ui/PopModal";
 import ResultModal from "../components/ui/ResultModal";
 import AppLoading from "expo-app-loading";
 import FadeInView from "../components/ui/FadeInView";
 
 // Buttons
-import CustomButton from "../components/ui/CustomButton";
 import EntypoIconButton from "../components/ui/EntypoIconButton";
 
 // Method of generate random numbers.
@@ -46,7 +41,6 @@ const SortingScreen = (props) => {
 
   const navigation = useNavigation();
 
-  const [received, setReceived] = useState([]);
   const [staged, setStaged] = useState([]);
   const [garbages, setGarbages] = useState(dataFile);
   const [selectedCards, setSelectedCards] = useState([]);
@@ -272,7 +266,6 @@ const SortingScreen = (props) => {
           // Recycle Bin
           style={[styles.centeredContent, styles.receivingZone]}
           receivingStyle={styles.receiving}
-          dragPayload={staged.join(" ")}
           draggable={staged.length > 0}
           renderContent={({ viewState }) => {
             const receivingDrag = viewState && viewState.receivingDrag;
@@ -313,7 +306,6 @@ const SortingScreen = (props) => {
           // Green Bin
           style={[styles.centeredContent, styles.receivingZone]}
           receivingStyle={styles.receiving}
-          dragPayload={staged.join(" ")}
           draggable={staged.length > 0}
           renderContent={({ viewState }) => {
             const receivingDrag = viewState && viewState.receivingDrag;

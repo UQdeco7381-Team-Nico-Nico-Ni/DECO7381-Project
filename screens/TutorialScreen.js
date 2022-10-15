@@ -13,14 +13,12 @@ import { DraxProvider, DraxView } from "react-native-drax";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Colors } from "../constants/styles";
 import SingleDragBox from "../components/ui/SingleDragBox";
-import ScoreBox from "../components/ui/ScoreBox";
 import dataFile from "../data/garbagesList";
 import { Category } from "../constants/GarbageInfo";
 import { storeRecord } from "../util/htttp";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../store/auth-context";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
-import ErrorOverlay from "../components/ui/ErrorOverlay";
 import AppLoading from "expo-app-loading";
 import HintBox from "../components/ui/HintBox";
 import FadeInView from "../components/ui/FadeInView";
@@ -28,7 +26,6 @@ import PopModal from "../components/ui/PopModal";
 import TutorialModal from "../components/ui/TutorialModal";
 
 // Buttons
-import CustomButton from "../components/ui/CustomButton";
 import EntypoIconButton from "../components/ui/EntypoIconButton";
 import MaterialIconsButton from "../components/ui/MaterialIconsButton";
 
@@ -43,7 +40,6 @@ const generateRandomBetween = (min, max) => {
 const TutorialScreen = (props) => {
   const navigation = useNavigation();
 
-  const [received, setReceived] = useState([]);
   const [staged, setStaged] = useState([]);
   const [garbages, setGarbages] = useState(dataFile);
   const [selectedCards, setSelectedCards] = useState([]);
@@ -292,7 +288,6 @@ const TutorialScreen = (props) => {
             // Recycle Bin
             style={[styles.centeredContent, styles.receivingZone]}
             receivingStyle={styles.receiving}
-            dragPayload={staged.join(" ")}
             draggable={staged.length > 0}
             renderContent={({ viewState }) => {
               const receivingDrag = viewState && viewState.receivingDrag;
@@ -333,7 +328,6 @@ const TutorialScreen = (props) => {
             // Green Bin
             style={[styles.centeredContent, styles.receivingZone]}
             receivingStyle={styles.receiving}
-            dragPayload={staged.join(" ")}
             draggable={staged.length > 0}
             renderContent={({ viewState }) => {
               const receivingDrag = viewState && viewState.receivingDrag;
