@@ -16,7 +16,6 @@ import ResetPasswordScreen from "./screens/ResetPasswordScreen";
 
 import { Colors } from "./constants/styles";
 import AuthContextProvider, { AuthContext } from "./store/auth-context";
-import IoniconsIconButton from "./components/ui/IoniconsIconButton";
 
 const Stack = createNativeStackNavigator();
 

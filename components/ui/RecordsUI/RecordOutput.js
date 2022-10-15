@@ -1,5 +1,4 @@
 import { StyleSheet, Text, View } from "react-native";
-// import { GlobalStyles } from "../../constants/styles";
 import RecordList from "./RecordList";
 
 function RecordOutput({ records, fallbackText }) {

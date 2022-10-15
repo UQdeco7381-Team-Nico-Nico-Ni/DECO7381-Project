@@ -1,5 +1,5 @@
-import { View, Text, StyleSheet, Image } from "react-native";
-import { DraxProvider, DraxView } from "react-native-drax";
+import { Text, StyleSheet, Image } from "react-native";
+import { DraxView } from "react-native-drax";
 import GarbageImages from "../../data/GarbageImages";
 
 const DragBox = (props) => {

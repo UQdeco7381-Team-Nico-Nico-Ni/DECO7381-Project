@@ -10,10 +10,6 @@ function MainMenuScreen() {
 
   return (
     <View style={styles.screen}>
-      {/* load background image */}
-      {/* <ImageBackground source={require("../assets/images/backgroundImage/mainMenu.png")} style={styles.backgroundImage}></ImageBackground> */}
-
-      {/* load game image */}
       <Image
         source={require("../assets/images/appLogo/applogo.png")}
         style={styles.image}
@@ -34,7 +30,6 @@ function MainMenuScreen() {
             bottomButton={() => {
               setModalVisible(false);
             }}
-            // text="Are you sure to Exit?"
           ></GameModeModal>
         )}
       </View>
