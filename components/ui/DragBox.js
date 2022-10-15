@@ -19,16 +19,14 @@ const DragBox = (props) => {
     >
       <Text>{props.title}</Text>
       <Image
-      imageAssetsFolder
+        imageAssetsFolder
         source={GarbageImages[props.imageUrl]}
         style={{ width: 50, height: 50 }}
       />
     </DraxView>
   );
 };
-{
-  /* <View style={{...styles.card, ...props.style}}>{props.children}</View> */
-}
+
 const styles = StyleSheet.create({
   card: {
     shadowColor: "black",

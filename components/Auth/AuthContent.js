@@ -4,7 +4,6 @@ import { useNavigation } from "@react-navigation/native";
 
 import FlatButton from "../ui/FlatButton";
 import AuthForm from "./AuthForm";
-import { Colors } from "../../constants/styles";
 
 function AuthContent({ isLogin, onAuthenticate }) {
   const navigation = useNavigation();
@@ -53,22 +52,23 @@ function AuthContent({ isLogin, onAuthenticate }) {
   }
 
   return (
-    <View style={styles.authContent}>
+    <View style={styles.container}>
       <ImageBackground
         source={require("../../assets/images/backgroundImage/signIn.png")}
-        resizeMode="cover"
+        resizeMode="stretch"
         style={styles.image}
       >
-        <AuthForm
-          style={styles.container}
-          isLogin={isLogin}
-          onSubmit={submitHandler}
-          credentialsInvalid={credentialsInvalid}
-        />
-        <View style={styles.buttons}>
-          <FlatButton onPress={switchAuthModeHandler}>
-            {isLogin ? "Create a new user" : "Log in instead"}
-          </FlatButton>
+        <View style={styles.authContent}>
+          <AuthForm
+            isLogin={isLogin}
+            onSubmit={submitHandler}
+            credentialsInvalid={credentialsInvalid}
+          />
+          <View style={styles.buttons}>
+            <FlatButton onPress={switchAuthModeHandler}>
+              {isLogin ? "Create a new user" : "Log in instead"}
+            </FlatButton>
+          </View>
         </View>
       </ImageBackground>
     </View>
@@ -78,9 +78,6 @@ function AuthContent({ isLogin, onAuthenticate }) {
 export default AuthContent;
 
 const styles = StyleSheet.create({
-  authContent: {
-    flex: 1,
-  },
   container: {
     flex: 1,
   },
@@ -88,7 +85,13 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
   },
+  authContent: {
+    marginTop: 64,
+    marginHorizontal: 32,
+    padding: 16,
+    alignItems: "center",
+  },
   buttons: {
-    marginBottom: 150,
+    marginTop: 8,
   },
 });

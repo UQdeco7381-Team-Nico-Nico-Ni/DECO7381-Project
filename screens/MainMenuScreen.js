@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Pressable,
   Text,
-  Image,
   ImageBackground,
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
@@ -21,6 +20,7 @@ function MainMenuScreen() {
       <ImageBackground
         source={require("../assets/images/backgroundImage/mainMenu.png")}
         style={styles.backgroundImage}
+        resizeMode="stretch"
       >
         <View style={styles.modal}>
           {modalVisible && (
