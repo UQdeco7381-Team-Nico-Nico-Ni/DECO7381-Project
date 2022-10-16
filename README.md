@@ -5,7 +5,7 @@
 GitHub repository:
 https://github.com/UQdeco7381-Team-Nico-Nico-Ni/DECO7381-Project
 
-### Option 1: If you own a Andorid device
+### Option 1: If you own an Andorid device
 Simply download the app at the link below:
 
 https://expo.dev/accounts/rlybexpo/projects/Litter_Panda/builds/df5b2c2a-b1df-4975-ad16-1949cc4bed1e
