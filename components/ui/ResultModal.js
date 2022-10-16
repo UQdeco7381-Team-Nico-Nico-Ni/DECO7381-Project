@@ -43,12 +43,12 @@ export default ResultModal;
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    marginTop: "80%",
+    marginTop: "70%",
     alignItems: "center",
   },
   modalView: {
     width: "70%",
-    height: "55%",
+    height: "57%",
     backgroundColor: "white",
     borderRadius: 20,
     alignItems: "center",
@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    top: -88,
+    top: -80,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",

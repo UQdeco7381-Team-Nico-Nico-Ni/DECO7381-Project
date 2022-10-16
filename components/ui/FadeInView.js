@@ -29,7 +29,7 @@ export default (props) => {
   return (
     <View style={styles.centerItems}>
       <FadeInView style={styles.container}>
-        {props.text == "correct!" ? (
+        {props.text == "Correct!" ? (
           <Text style={styles.correctText}>{props.text}</Text>
         ) : (
           <Text style={styles.wrongText}>{props.text}</Text>

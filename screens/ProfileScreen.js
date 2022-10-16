@@ -27,21 +27,6 @@ const ProfileScreen = (props) => {
   const [error, setError] = useState();
   const [userName, setUserName] = useState(authCtx.currentUser);
   const [personRecord, setPersonRecord] = useState();
-  const [fetchedRecords, setFetchedRecords] = useState([]);
-
-  useEffect(() => {
-    async function getRecords() {
-      setIsFetching(true);
-      try {
-        const records = await fetchRecords();
-        setFetchedRecords(records);
-      } catch (error) {
-        setError("Could not fetch Records!");
-      }
-      setIsFetching(false);
-    }
-    getRecords();
-  }, []);
 
   useEffect(() => {
     async function getPersonalRecords() {

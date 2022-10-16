@@ -37,7 +37,7 @@ export default PopModal;
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    marginTop: "80%",
+    marginTop: "70%",
     alignItems: "center",
   },
   modalView: {

@@ -2,7 +2,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 import { Colors } from "../../constants/styles";
 
-function CustomButton({ children, onPress, color }) {
+function CancelButton({ children, onPress, color }) {
   return (
     <Pressable
       style={({ pressed }) => [styles.button, pressed && styles.pressed]}
@@ -15,7 +15,7 @@ function CustomButton({ children, onPress, color }) {
   );
 }
 
-export default CustomButton;
+export default CancelButton;
 
 const styles = StyleSheet.create({
   button: {
@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     paddingHorizontal: 12,
     marginTop: 5,
-    backgroundColor: Colors.springGreen,
+    backgroundColor: Colors.bashfulness,
     elevation: 3,
     shadowColor: "black",
     shadowOffset: { width: 0, height: 2 },

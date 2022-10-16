@@ -438,7 +438,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   wrongAnswer: {
-    alignItems: "center", 
+    alignItems: "center",
   },
   skipButton: {
     width: 70,

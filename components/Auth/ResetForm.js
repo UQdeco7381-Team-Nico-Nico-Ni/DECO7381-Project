@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { StyleSheet, View, ImageBackground } from "react-native";
 import { useNavigation } from "@react-navigation/native";
+import { Colors } from "../../constants/styles";
 
 import CustomButton from "../ui/CustomButton";
+import CancelButton from "../ui/CancelButton";
 import Input from "./Input";
 
 function ResetForm({ isLogin, onSubmit, credentialsInvalid }) {
@@ -59,8 +61,8 @@ function ResetForm({ isLogin, onSubmit, credentialsInvalid }) {
             {isLogin ? "Submit" : "Login"}
           </CustomButton>
         </View>
-        <View style={styles.buttons}>
-          <CustomButton onPress={goBack}>Cancel</CustomButton>
+        <View style={styles.cancelButtons}>
+          <CancelButton onPress={goBack}>Cancel</CancelButton>
         </View>
       </View>
     </View>
@@ -72,5 +74,9 @@ export default ResetForm;
 const styles = StyleSheet.create({
   buttons: {
     marginTop: 12,
+  },
+  cancelButtons: {
+    marginTop: 12,
+    color: Colors.bashfulness,
   },
 });
