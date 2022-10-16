@@ -4,10 +4,10 @@
     "slug": "Litter_Panda",
     "version": "1.0.0",
     "orientation": "portrait",
-    // "icon": "./assets/icon.png",
+    "icon": "./assets/images/appLogo/app_icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-    //   "image": "./assets/splash.png",
+      "image": "./assets/images/appLogo/app_splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -18,16 +18,19 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.niconiconi.litterPanda"
     },
     "android": {
-      "adaptiveIcon": {
-        // "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
+      "package": "com.niconiconi.litterPanda"
     },
     "web": {
-    //   "favicon": "./assets/favicon.png"
+      "favicon": "./assets/images/appLogo/app_icon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e3fa0587-4aff-4a5e-a537-2c1f5429e696"
+      }
     }
   }
 }
