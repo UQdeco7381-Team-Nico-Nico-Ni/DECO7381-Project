@@ -222,8 +222,8 @@ const SortingScreen = (props) => {
       </GestureHandlerRootView>
 
       <View style={styles.hintBox}>
-        {isWrong && <FadeInView text="mistake" />}
-        {isCorrect && <FadeInView text="correct!" />}
+        {isWrong && <FadeInView text="Mistake" />}
+        {isCorrect && <FadeInView text="Correct!" />}
       </View>
 
       {/* Bins Section */}

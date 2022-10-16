@@ -33,12 +33,12 @@ export default TutorialModal;
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    marginTop: "70%",
+    justifyContent: "center",
     alignItems: "center",
   },
   modalView: {
     width: "70%",
-    height: "52%",
+    height: "40%",
     backgroundColor: "white",
     borderRadius: 20,
     alignItems: "center",
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    top: -80,
+    top: -70,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
