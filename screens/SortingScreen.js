@@ -16,7 +16,7 @@ import Timer from "../components/ui/Timer";
 import ScoreBox from "../components/ui/ScoreBox";
 import dataFile from "../data/garbagesList";
 import { Category } from "../constants/GarbageInfo";
-import { storeRecord } from "../util/htttp";
+import { storeRecord } from "../util/http";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { AuthContext } from "../store/auth-context";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
