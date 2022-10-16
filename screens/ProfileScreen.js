@@ -10,7 +10,7 @@ import {
 
 import { useNavigation } from "@react-navigation/native";
 import { Colors } from "../constants/styles";
-import { fetchRecords, fetchPersonalRecords } from "../util/htttp";
+import { fetchRecords, fetchPersonalRecords } from "../util/http";
 import LoadingOverlay from "../components/ui/LoadingOverlay";
 import ErrorOverlay from "../components/ui/ErrorOverlay";
 import RecordOutput from "../components/ui/RecordsUI/RecordOutput";
