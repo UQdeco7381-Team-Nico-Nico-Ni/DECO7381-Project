@@ -40,7 +40,7 @@ function ResetForm({ isLogin, onSubmit, credentialsInvalid }) {
     <View style={styles.form}>
       <View>
         <Input
-          label="Password"
+          label="New Password"
           onUpdateValue={updateInputValueHandler.bind(this, "password")}
           secure
           value={enteredPassword}

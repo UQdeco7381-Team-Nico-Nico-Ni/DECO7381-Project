@@ -122,7 +122,8 @@ const ProfileScreen = (props) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 40,
+    paddingTop: 40,
+    backgroundColor: Colors.springGreen,
   },
   buttonContainer: {
     flex: 3,

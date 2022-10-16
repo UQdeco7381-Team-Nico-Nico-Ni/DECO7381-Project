@@ -8,13 +8,13 @@ const PopModal = ({ modalVisible, text, leftButton, rightButton }) => {
         <View style={styles.modalView}>
           <Image
             style={styles.banner}
-            source={require("../../assets/images/backgroundImage/banner_hooray.png")}
+            source={require("../../assets/images/backgroundImage/banner_retry.png")}
             resizeMode="cover"
           />
           <Text style={styles.modalText}>{text}</Text>
           <Image
             style={styles.emoji}
-            source={require("../../assets/images/backgroundImage/emoji_hooray.png")}
+            source={require("../../assets/images/backgroundImage/emoji_question.png")}
             resizeMode="cover"
           />
           <View style={styles.buttonContainer}>
@@ -37,12 +37,12 @@ export default PopModal;
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    marginTop: "50%",
+    marginTop: "80%",
     alignItems: "center",
   },
   modalView: {
     width: "70%",
-    height: "45%",
+    height: "57%",
     backgroundColor: "white",
     borderRadius: 20,
     alignItems: "center",
@@ -66,10 +66,12 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
     fontSize: 20,
+    color: Colors.bigStone,
+    fontWeight: "bold",
   },
   buttonContainer: {
     flex: 1,
-    top: -75,
+    top: -80,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",

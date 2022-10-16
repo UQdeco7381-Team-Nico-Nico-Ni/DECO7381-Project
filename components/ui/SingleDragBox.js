@@ -1,5 +1,6 @@
 import { Text, StyleSheet, Image } from "react-native";
 import { DraxView } from "react-native-drax";
+import { Colors } from "../../constants/styles";
 import GarbageImages from "../../data/GarbageImages";
 
 const SingleDragBox = (props) => {
@@ -21,7 +22,7 @@ const SingleDragBox = (props) => {
       <Image
         imageAssetsFolder
         source={GarbageImages[props.imageUrl]}
-        style={{ width: 80, height: 80 }}
+        style={{ width: '50%', height: '50%', resizeMode: 'contain' }}
       />
     </DraxView>
   );
@@ -38,9 +39,18 @@ const styles = StyleSheet.create({
     width: "80%",
     height: 200,
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "black",
+    borderWidth: 3,
+    borderColor: Colors.bamboo,
     backgroundColor: "white",
+    marginTop: 30,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   dragging: {
     opacity: 0.2,
@@ -50,8 +60,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   title: {
-    fontSize: 16,
+    fontSize: 20,
     paddingBottom: 5,
+    fontWeight: 'bold',
   },
 });
 

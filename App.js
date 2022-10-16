@@ -43,7 +43,7 @@ function AuthenticatedStack() {
         // headerShown: false,
         headerStyle: { backgroundColor: Colors.bashfulness },
         headerTintColor: "white",
-        contentStyle: { backgroundColor: Colors.springGreen },
+        contentStyle: { backgroundColor: Colors.babyCream },
       }}
     >
       <Stack.Screen
@@ -81,6 +81,7 @@ function AuthenticatedStack() {
         component={ProfileScreen}
         options={{
           headerShown: false,
+          backgroundColor: Colors.springGreen,
         }}
       />
       <Stack.Screen

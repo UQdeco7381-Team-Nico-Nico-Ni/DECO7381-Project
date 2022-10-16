@@ -20,7 +20,7 @@ function Timer({ timeUpMethod }) {
   const timerCallbackFunc = (timerFlag) => {
     // Setting timer flag to finished
     setTimerEnd(timerFlag);
-    timeUpMethod()
+    timeUpMethod();
   };
 
   return (
@@ -37,12 +37,22 @@ function Timer({ timeUpMethod }) {
           timestamp={60}
           timerCallback={timerCallbackFunc}
           containerStyle={{
-            height: 56,
-            width: 120,
+            height: 50,
+            width: 130,
             justifyContent: "center",
             alignItems: "center",
             borderRadius: 35,
             backgroundColor: Colors.bearBrown,
+            borderWidth: 3,
+            borderColor: "#fff",
+            shadowColor: "#000",
+            shadowOffset: {
+              width: 0,
+              height: 2,
+            },
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            elevation: 5,
           }}
           textStyle={{
             fontSize: 25,
@@ -55,8 +65,8 @@ function Timer({ timeUpMethod }) {
       <TouchableOpacity
         style={{
           display: "none",
-          height: 56,
-          width: 120,
+          height: 50,
+          width: 130,
           justifyContent: "center",
           alignItems: "center",
           borderRadius: 35,

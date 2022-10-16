@@ -175,7 +175,7 @@ const SortingScreen = (props) => {
           style={styles.buttonContainer}
           icon="arrow-with-circle-left"
           size={36}
-          color={Colors.rose}
+          color={Colors.bamboo}
           onPress={() => {
             setModalVisible(true);
           }}
@@ -187,7 +187,7 @@ const SortingScreen = (props) => {
             endGame();
           }}
         />
-        <ScoreBox points={point} style={styles.buttonContainer} />
+        <ScoreBox points={point} style={styles.buttonContainer}/>
       </View>
       <View style={styles.modal}>
         {modalVisible && (
@@ -206,7 +206,7 @@ const SortingScreen = (props) => {
             leftButton={backToMenu}
             rightButton={handleSubmit}
             point={point}
-            text="Score"
+            text="Your score is"
           ></ResultModal>
         )}
       </View>
@@ -359,7 +359,6 @@ const styles = StyleSheet.create({
   binsContainer: {
     flex: 1,
     padding: 12,
-    paddingTop: 10,
     flexDirection: "row",
   },
   centeredContent: {
@@ -377,7 +376,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
   },
   palette: {
-    paddingTop: 30,
+    paddingTop: '35%',
     flexDirection: "row",
     justifyContent: "space-around",
     height: "50%",
@@ -390,7 +389,7 @@ const styles = StyleSheet.create({
     borderColor: "black",
   },
   binImage: {
-    height: 170,
+    height: '100%',
     flex: 1,
   },
   dragging: {

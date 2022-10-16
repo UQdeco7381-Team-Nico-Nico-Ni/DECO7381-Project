@@ -14,11 +14,15 @@ const styles = StyleSheet.create({
     container:{
         height: 56,
         width: 250,
-        borderRadius: 10,
-        backgroundColor: Colors.babyBlue,
+        borderRadius: 25,
+        backgroundColor: Colors.bamboo,
+        marginTop: '15%',
       },
     content: {
         fontSize: 18,
+        fontWeight: 'bold',
+        color: 'white',
         textAlign: 'center',
+        paddingTop: '6.5%'
     }
 });

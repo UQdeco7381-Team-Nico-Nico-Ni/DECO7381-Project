@@ -19,7 +19,7 @@ const TutorialModal = ({ modalVisible, text, centerButton }) => {
           />
           <View style={styles.buttonContainer}>
             <Pressable style={styles.buttonPink} onPress={centerButton}>
-              <Text style={styles.buttonFont}>END</Text>
+              <Text style={styles.buttonFont}>Back home</Text>
             </Pressable>
           </View>
         </View>
@@ -33,12 +33,12 @@ export default TutorialModal;
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    marginTop: "50%",
+    marginTop: "80%",
     alignItems: "center",
   },
   modalView: {
     width: "70%",
-    height: "45%",
+    height: "52%",
     backgroundColor: "white",
     borderRadius: 20,
     alignItems: "center",
@@ -62,6 +62,8 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
     fontSize: 20,
+    color: Colors.bigStone,
+    fontWeight: "bold",
   },
   buttonContainer: {
     flex: 1,
@@ -74,7 +76,7 @@ const styles = StyleSheet.create({
     width: "10%",
   },
   buttonPink: {
-    width: 100,
+    width: 140,
     height: 50,
     backgroundColor: Colors.bashfulness,
     borderWidth: 2,
@@ -91,28 +93,10 @@ const styles = StyleSheet.create({
     shadowRadius: 2.54,
     elevation: 3,
   },
-  buttonGreen: {
-    width: 100,
-    height: 50,
-    backgroundColor: Colors.pineTree,
-    borderWidth: 2,
-    borderColor: "#fff",
-    borderRadius: 33,
-    justifyContent: "center",
-    marginBottom: 20,
-    shadowColor: "black",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.17,
-    shadowRadius: 2.54,
-    elevation: 3,
-  },
   buttonFont: {
     // fontFamily: WendyOne,
     color: "white",
-    fontSize: 24,
+    fontSize: 18,
     textAlign: "center",
     textAlignVertical: "center",
     fontWeight: "bold",

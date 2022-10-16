@@ -25,11 +25,11 @@ const ResultModal = ({
           </View>
           <View style={styles.buttonContainer}>
             <Pressable style={styles.buttonPink} onPress={leftButton}>
-              <Text style={styles.buttonFont}>Menu</Text>
+              <Text style={styles.buttonFont}>Back {"\n"}home</Text>
             </Pressable>
             <View style={styles.space}></View>
             <Pressable style={styles.buttonGreen} onPress={rightButton}>
-              <Text style={styles.buttonFont}>UPLOAD</Text>
+              <Text style={styles.buttonFont}>Upload result</Text>
             </Pressable>
           </View>
         </View>
@@ -43,12 +43,12 @@ export default ResultModal;
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    marginTop: "50%",
+    marginTop: "80%",
     alignItems: "center",
   },
   modalView: {
     width: "70%",
-    height: "45%",
+    height: "55%",
     backgroundColor: "white",
     borderRadius: 20,
     alignItems: "center",
@@ -66,6 +66,8 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
     fontSize: 20,
+    color: Colors.bigStone,
+    fontWeight: "bold",
   },
   infoText: {
     textAlign: "center",
@@ -73,7 +75,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    top: -95,
+    top: -88,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-around",
@@ -120,7 +122,7 @@ const styles = StyleSheet.create({
   buttonFont: {
     // fontFamily: WendyOne,
     color: "white",
-    fontSize: 20,
+    fontSize: 16,
     textAlign: "center",
     textAlignVertical: "center",
     fontWeight: "bold",

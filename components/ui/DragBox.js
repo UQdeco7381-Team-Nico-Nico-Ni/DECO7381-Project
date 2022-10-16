@@ -1,5 +1,6 @@
 import { Text, StyleSheet, Image } from "react-native";
 import { DraxView } from "react-native-drax";
+import { Colors } from "../../constants/styles";
 import GarbageImages from "../../data/GarbageImages";
 
 const DragBox = (props) => {
@@ -17,61 +18,37 @@ const DragBox = (props) => {
       onDragStart={props.onDragStart}
       binType={props.binType}
     >
-      <Text>{props.title}</Text>
+      <Text style={styles.title}>{props.title}</Text>
       <Image
         imageAssetsFolder
         source={GarbageImages[props.imageUrl]}
-        style={{ width: 50, height: 50 }}
+        style={{ width: 50, height: '50%', resizeMode: 'contain'}}
       />
     </DraxView>
   );
 };
 
 const styles = StyleSheet.create({
-  card: {
-    shadowColor: "black",
-    shadowOffset: { width: 0, height: 2 },
-    shadowRadius: 6,
-    shadowOpacity: 0.26,
-    backgroundColor: "white",
-    elevation: 5,
-    padding: 20,
-    borderRadius: 10,
-  },
-  container: {
-    flex: 1,
-    flexWrap: "wrap",
-    padding: 12,
-    paddingTop: 40,
-    flexDirection: "row",
-    justifyContent: "space-around",
-  },
   centeredContent: {
     justifyContent: "center",
     alignItems: "center",
   },
-
-  incomingPayload: {
-    marginTop: 10,
-    fontSize: 24,
-  },
-  received: {
-    marginTop: 10,
-    fontSize: 18,
-  },
-  palette: {
-    paddingTop: 30,
-    flexDirection: "row",
-    justifyContent: "space-around",
-    height: "60%",
-  },
   draggableBox: {
     width: "40%",
-    height: 120,
+    height: 180,
     borderRadius: 10,
-    borderWidth: 1,
-    borderColor: "black",
+    borderWidth: 3,
+    borderColor: Colors.bamboo,
     backgroundColor: "white",
+    marginTop: 30,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   dragging: {
     opacity: 0.2,
@@ -82,6 +59,11 @@ const styles = StyleSheet.create({
   },
   stagedCount: {
     fontSize: 18,
+  },
+  title: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: Colors.bigStone,
   },
 });
 

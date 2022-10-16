@@ -35,12 +35,12 @@ export default GameModeModal;
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    marginTop: "50%",
+    marginTop: "60%",
     alignItems: "center",
   },
   modalView: {
-    width: "70%",
-    height: "45%",
+    width: "80%",
+    height: "50%",
     margin: 20,
     backgroundColor: "white",
     borderRadius: 20,
@@ -62,9 +62,11 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   modalText: {
-    marginBottom: 15,
+    marginBottom: 25,
     textAlign: "center",
     fontSize: 20,
+    fontWeight: 'bold',
+    color: Colors.bigStone,
   },
   buttonContainer: {
     flex: 1,
@@ -75,8 +77,8 @@ const styles = StyleSheet.create({
     width: "10%",
   },
   buttonPink: {
-    width: 200,
-    height: 55,
+    width: 220,
+    height: 50,
     backgroundColor: Colors.bashfulness,
     borderWidth: 2,
     borderColor: "#fff",
@@ -93,8 +95,8 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   buttonGreen: {
-    width: 200,
-    height: 55,
+    width: 220,
+    height: 50,
     backgroundColor: Colors.pineTree,
     borderWidth: 2,
     borderColor: "#fff",
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
   buttonFont: {
     // fontFamily: WendyOne,
     color: "white",
-    fontSize: 24,
+    fontSize: 22,
     textAlign: "center",
     textAlignVertical: "center",
     fontWeight: "bold",

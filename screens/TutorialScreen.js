@@ -186,7 +186,7 @@ const TutorialScreen = (props) => {
             style={styles.buttonContainer}
             icon="arrow-with-circle-left"
             size={36}
-            color={Colors.rose}
+            color={Colors.bamboo}
             onPress={() => {
               setModalVisible(true);
             }}
@@ -195,7 +195,7 @@ const TutorialScreen = (props) => {
             style={styles.buttonContainer}
             icon="alert-box"
             size={36}
-            color={Colors.rose}
+            color={Colors.bamboo}
             onPress={() => {
               if (!isGetHint) {
                 setIsGetHint(true);
@@ -225,7 +225,7 @@ const TutorialScreen = (props) => {
             <TutorialModal
               modalVisible={isGameEnd}
               centerButton={backToMenu}
-              text="Congrats! Tutorial is End!"
+              text="Tutorial is Finished!"
             ></TutorialModal>
           )}
         </View>
@@ -243,8 +243,8 @@ const TutorialScreen = (props) => {
           {isGetHint && <HintBox hint={hint}></HintBox>}
         </View>
         <View style={styles.wrongAnswer}>
-          {isWrong && <FadeInView text="mistake" />}
-          {isCorrect && <FadeInView text="correct!" />}
+          {isWrong && <FadeInView text="Mistake" />}
+          {isCorrect && <FadeInView text="Correct!" />}
         </View>
 
         {/* Bins Section */}
@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
   },
   binsContainer: {
     flex: 1,
-    paddingHorizontal: 12,
+    paddingHorizontal: 15,
     flexDirection: "row",
   },
   centeredContent: {
@@ -406,7 +406,7 @@ const styles = StyleSheet.create({
     height: "30%",
   },
   binImage: {
-    height: 170,
+    height: '90%',
     flex: 1,
   },
   dragging: {
@@ -438,12 +438,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   wrongAnswer: {
-    alignItems: "center",
+    alignItems: "center", 
   },
   skipButton: {
     width: 70,
     height: 35,
-    backgroundColor: Colors.bashfulness,
+    backgroundColor: Colors.bamboo,
     borderWidth: 2,
     borderColor: "#fff",
     borderRadius: 33,
