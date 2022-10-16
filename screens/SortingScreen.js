@@ -53,6 +53,7 @@ const SortingScreen = (props) => {
   const [isTryingLogin, setIsTryingLogin] = useState(true);
   const [modalVisible, setModalVisible] = useState(false);
   const [isGameEnd, setIsGameEnd] = useState(false);
+  const [isLastCorrect, setIsLastCorrect] = useState(false);
 
   const authCtx = useContext(AuthContext);
 
@@ -254,10 +255,18 @@ const SortingScreen = (props) => {
           // Handle the result of drag.
           onReceiveDragDrop={(event) => {
             if (event.dragged.payload == Category.general) {
-              setPoint(point + 200);
-              setIsCorrect(true);
+              if (isLastCorrect) {
+                setPoint(point + 300);
+                setIsCorrect(true);
+                setIsLastCorrect(true);
+              } else {
+                setPoint(point + 200);
+                setIsCorrect(true);
+                setIsLastCorrect(true);
+              }
             } else {
               setIsWrong(true);
+              setIsLastCorrect(false);
             }
           }}
         />
@@ -294,10 +303,18 @@ const SortingScreen = (props) => {
           // Handle the result of drag.
           onReceiveDragDrop={(event) => {
             if (event.dragged.payload == Category.recycle) {
-              setPoint(point + 200);
-              setIsCorrect(true);
+              if (isLastCorrect) {
+                setPoint(point + 300);
+                setIsCorrect(true);
+                setIsLastCorrect(true);
+              } else {
+                setPoint(point + 200);
+                setIsCorrect(true);
+                setIsLastCorrect(true);
+              }
             } else {
               setIsWrong(true);
+              setIsLastCorrect(false);
             }
           }}
         />
@@ -336,10 +353,18 @@ const SortingScreen = (props) => {
           // Handle the result of drag.
           onReceiveDragDrop={(event) => {
             if (event.dragged.payload == Category.green) {
-              setPoint(point + 200);
-              setIsCorrect(true);
+              if (isLastCorrect) {
+                setPoint(point + 300);
+                setIsCorrect(true);
+                setIsLastCorrect(true);
+              } else {
+                setPoint(point + 200);
+                setIsCorrect(true);
+                setIsLastCorrect(true);
+              }
             } else {
               setIsWrong(true);
+              setIsLastCorrect(false);
             }
           }}
         />
