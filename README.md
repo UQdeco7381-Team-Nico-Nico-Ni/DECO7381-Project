@@ -22,3 +22,9 @@ https://expo.dev/accounts/rlybexpo/projects/Litter_Panda/builds/df5b2c2a-b1df-49
 1. Same as steps 1 - 6 as above.
 2. Download 'Expo' app on your mobile's app store.
 3. Scan the QR code on your mobile device with EXPO app(Android)  Or use the camera instead(iOs).
+
+For use the App you need to login first, you can register one by yourself or use the following test account:
+
+user name: niconiconi@gmail.com
+
+password: test123
